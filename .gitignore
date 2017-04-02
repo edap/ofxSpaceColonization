@@ -1,10 +1,1 @@
-# Ignore everything
-*
-
-# But not these files...
-!.gitignore
-!src
-!example-*
-!scripts
-!README.md
 
