@@ -75,22 +75,23 @@ void ofxSpaceColonization::grow(){
         }
 
         //Generate the new branches
+        vector<shared_ptr<ofxSpaceColonizationBranch>> newBranches;
         for (int i = 0; i<branches.size(); i++) {
-            if(branches[i]!= nullptr && branches[i]->count > 0){
-                // controllare qui, shiffman dice di aggiungere 1 al count (min 44.52)
-                auto newDir = branches[i]->direction / (float(branches[i]->count));
-                //auto newDir = branches[i]->direction / (float(branches[i]->count + 1));
-                shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(newDir));
-                nextBranch->setParent(branches[i]);
-                nextBranch->move(newDir.normalize() * branch_length);
-                addBranchToMesh(nextBranch);
-                //add nextBranch to mesh
-                branches.push_back(nextBranch);
-            }
             if(branches[i]!= nullptr){
+                if(branches[i]->count > 0){
+                    // controllare qui, shiffman dice di aggiungere 1 al count (min 44.52)
+                    auto newDir = branches[i]->direction / (float(branches[i]->count));
+                    //auto newDir = branches[i]->direction / (float(branches[i]->count + 1));
+                    shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(newDir));
+                    nextBranch->setParent(branches[i]);
+                    nextBranch->move(newDir.normalize() * branch_length);
+                    addBranchToMesh(nextBranch);
+                    newBranches.push_back(nextBranch);
+                }
                 branches[i]->reset();
             }
         }
+        branches.insert(branches.end(), newBranches.begin(), newBranches.end());
     }
 
 }
