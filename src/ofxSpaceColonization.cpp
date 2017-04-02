@@ -111,8 +111,11 @@ void ofxSpaceColonization::draw(){
     for(auto l:leaves){
         l.draw();
     }
-    for(auto b:branches){
-        b->draw();
+
+    for(int i = 0; i < branches.size(); i++){
+        float lineWidth = ofMap(i, 0, branches.size(), 20, 1);
+        ofSetLineWidth(lineWidth);
+        branches[i]->draw();
     }
 }
 
