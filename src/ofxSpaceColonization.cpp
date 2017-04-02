@@ -38,6 +38,7 @@ ofxSpaceColonization::ofxSpaceColonization(){
 void ofxSpaceColonization::grow(){
     //arrivati verso la fine questo numero dovrebbe smettere di crescere
     // invece continua a salire
+
     if(!done_growing){
         cout << branches.size() << endl;
         for(int it=0;it<leaves.size();it++){
@@ -119,5 +120,5 @@ void ofxSpaceColonization::draw(){
 }
 
 void ofxSpaceColonization::addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch){
-
+    //TODO
 }
