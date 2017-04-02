@@ -60,7 +60,7 @@ void ofxSpaceColonization::grow(){
                 }
             }
 
-
+            //adjust direction and count
             if(closestBranchIndex>=0 && !leaves[it].reached){
                 auto dir = (leaves[it].getPosition() - branches[closestBranchIndex]->getPosition()).normalize();
                 branches[closestBranchIndex]->direction = branches[closestBranchIndex]->direction + dir;
