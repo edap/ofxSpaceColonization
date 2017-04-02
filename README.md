@@ -1,1 +1,3 @@
 # ofxSpaceColonization
+
+Work in progress
