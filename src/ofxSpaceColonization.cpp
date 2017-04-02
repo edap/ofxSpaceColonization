@@ -41,6 +41,7 @@ void ofxSpaceColonization::grow(){
 
     if(!done_growing){
         cout << branches.size() << endl;
+        //process leaves
         for(int it=0;it<leaves.size();it++){
             float record = 10000.0;
 
@@ -58,6 +59,7 @@ void ofxSpaceColonization::grow(){
                     record = distance;
                 }
             }
+
 
             if(closestBranchIndex>=0 && !leaves[it].reached){
                 auto dir = (leaves[it].getPosition() - branches[closestBranchIndex]->getPosition()).normalize();
@@ -79,6 +81,7 @@ void ofxSpaceColonization::grow(){
             }
         }
 
+        //Generate the new branches
         for (int i = 0; i<branches.size(); i++) {
             if(branches[i]!= nullptr && branches[i]->count > 0){
                 // controllare qui, shiffman dice di aggiungere 1 al count (min 44.52)
