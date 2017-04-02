@@ -1,5 +1,5 @@
 #include "ofxSpaceColonization.h"
-
+// http://www.jgallant.com/procedurally-generating-trees-with-space-colonization-algorithm-in-xna/
 ofxSpaceColonization::ofxSpaceColonization(){
     auto rootPos = ofVec3f(ofGetWidth()/2, ofGetHeight(), 0);
     auto rootDir = ofVec3f(0, -1, 0);
