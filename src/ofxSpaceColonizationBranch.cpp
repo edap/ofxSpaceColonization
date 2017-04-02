@@ -27,7 +27,7 @@ void ofxSpaceColonizationBranch::draw(){
     if(this->node.getParent() != nullptr){
         auto pos = this->node.getGlobalPosition();
         auto parentPos = this->node.getParent()->getGlobalPosition();
-        ofDrawLine(pos.x, pos.y, parentPos.x, parentPos.y);
+        ofDrawLine(parentPos.x, parentPos.y, parentPos.z, pos.x, pos.y, pos.z);
     }
 }
 

@@ -1,8 +1,8 @@
 #include "ofxSpaceColonization.h"
 // http://www.jgallant.com/procedurally-generating-trees-with-space-colonization-algorithm-in-xna/
 ofxSpaceColonization::ofxSpaceColonization(){
-    auto rootPos = ofVec3f(ofGetWidth()/2, ofGetHeight(), 0);
-    auto rootDir = ofVec3f(0, -1, 0);
+    auto rootPos = ofVec3f(0, 0, 0);
+    auto rootDir = ofVec3f(0, 1, 0);
     shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(rootDir));
     root->move(rootPos);
     branches.push_back(root);
@@ -63,6 +63,9 @@ void ofxSpaceColonization::grow(){
             //adjust direction and count
             if(closestBranchIndex>=0 && !leaves[it].reached){
                 auto dir = (leaves[it].getPosition() - branches[closestBranchIndex]->getPosition()).normalize();
+                // here you should add some random force to avoid the situation
+                // where a branch is stucked between the attraction of 2 leaves
+                // equidistant
                 branches[closestBranchIndex]->direction = branches[closestBranchIndex]->direction + dir;
                 branches[closestBranchIndex]->count = branches[closestBranchIndex]->count + 1;
             }

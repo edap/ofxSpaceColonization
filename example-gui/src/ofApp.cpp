@@ -16,9 +16,10 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     maybeDrawGui();
-    //camera.begin();
+    camera.begin();
     tree.draw();
-    //camera.end();
+    ofDrawAxis(100);
+    camera.end();
 }
 
 void ofApp::maybeDrawGui(){
