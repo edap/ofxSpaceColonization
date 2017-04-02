@@ -86,7 +86,7 @@ void ofxSpaceColonization::grow(){
                 //auto newDir = branches[i]->direction / (float(branches[i]->count + 1));
                 shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(newDir));
                 nextBranch->setParent(branches[i]);
-                nextBranch->move(newDir * branch_length);
+                nextBranch->move(newDir.normalize() * branch_length);
                 addBranchToMesh(nextBranch);
                 //add nextBranch to mesh
                 branches.push_back(nextBranch);
