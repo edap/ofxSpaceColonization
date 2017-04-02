@@ -65,13 +65,6 @@ void ofxSpaceColonization::grow(){
                 auto dir = (leaves[it].getPosition() - branches[closestBranchIndex]->getPosition()).normalize();
                 branches[closestBranchIndex]->direction = branches[closestBranchIndex]->direction + dir;
                 branches[closestBranchIndex]->count = branches[closestBranchIndex]->count + 1;
-
-                shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(dir));
-                if(!branches.empty()){
-                    nextBranch->setParent(branches.back());
-                    nextBranch->move(branches[closestBranchIndex]->direction * branch_length);
-                    addBranchToMesh(nextBranch);
-                }
             }
 
             if(leaves[it].reached){
