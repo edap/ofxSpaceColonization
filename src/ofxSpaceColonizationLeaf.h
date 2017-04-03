@@ -3,7 +3,7 @@
 class ofxSpaceColonizationLeaf {
 
 public:
-    ofxSpaceColonizationLeaf();
+    ofxSpaceColonizationLeaf(ofVec3f vec);
     void draw();
     ofVec3f getPosition();
     bool reached = false;

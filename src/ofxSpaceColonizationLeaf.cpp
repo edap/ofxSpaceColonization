@@ -1,11 +1,7 @@
 #include "ofxSpaceColonizationLeaf.h"
 
-ofxSpaceColonizationLeaf::ofxSpaceColonizationLeaf(){
-    int ray = 400;
-    pos = ofVec3f(ofRandom(-ray,+ray),
-                  ofRandom(100, ray),
-                  ofRandom(-ray,+ray));
-    //pos = ofVec3f(ofGetWidth()/2, 0,0);
+ofxSpaceColonizationLeaf::ofxSpaceColonizationLeaf(ofVec3f _pos){
+    pos = _pos;
 }
 
 void ofxSpaceColonizationLeaf::draw(){

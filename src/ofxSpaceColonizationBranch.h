@@ -15,7 +15,5 @@ public:
     int count = 0;
 private:
     ofNode node;
-    //ofVec3f parentPos;
-    //ofVec3f pos;
 };
 

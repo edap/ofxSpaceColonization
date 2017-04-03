@@ -1,14 +1,17 @@
 #include "ofxSpaceColonization.h"
 // http://www.jgallant.com/procedurally-generating-trees-with-space-colonization-algorithm-in-xna/
 ofxSpaceColonization::ofxSpaceColonization(){
-    auto rootPos = ofVec3f(0, 0, 0);
-    auto rootDir = ofVec3f(0, 1, 0);
-    shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(rootDir));
-    root->move(rootPos);
+    //auto rootPos = ofVec3f(0, 0, 0);
+    //auto rootDir = ofVec3f(0, 1, 0);
+    if (particles.empty()) {
+        particles = generateDefaultParticles(400, use3d, trunk_length);
+    }
+    shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(root_direction));
+    root->move(root_position);
     branches.push_back(root);
 
-    for (int i =0; i<n_leaves; i++) {
-        leaves.push_back(ofxSpaceColonizationLeaf());
+    for (auto vec:particles) {
+        leaves.push_back(ofxSpaceColonizationLeaf(vec));
     }
 
     auto current = root;
@@ -33,6 +36,11 @@ ofxSpaceColonization::ofxSpaceColonization(){
             current = branches.back();
         }
     }
+}
+
+void ofxSpaceColonization::build(){
+    //TODO, prima setti tutte le variabili e poi chiami build
+
 }
 
 void ofxSpaceColonization::grow(){
@@ -124,4 +132,24 @@ void ofxSpaceColonization::draw(){
 
 void ofxSpaceColonization::addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch){
     //TODO
+}
+
+vector<ofVec3f> ofxSpaceColonization::generateDefaultParticles(int n_particles, bool use3d, int _trunk_length) const{
+    vector<ofVec3f> tmp_particles;
+    int ray = 400;
+    for(int i = 0; i< n_particles; i++){
+        if(use3d){
+            ofVec3f pos = ofVec3f(ofRandom(-ray,+ray),
+                          ofRandom(_trunk_length, ray),
+                          ofRandom(-ray,+ray));
+            tmp_particles.push_back(pos);
+        }else{
+            ofVec3f pos = ofVec3f(ofRandom(-ray,+ray),
+                                  ofRandom(_trunk_length, ray),
+                                  0);
+            tmp_particles.push_back(pos);
+        }
+
+    }
+    return tmp_particles;
 }
