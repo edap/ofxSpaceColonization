@@ -3,6 +3,10 @@
 ofxSpaceColonization::ofxSpaceColonization(){
     //auto rootPos = ofVec3f(0, 0, 0);
     //auto rootDir = ofVec3f(0, 1, 0);
+    if(!use3d){
+        root_position = ofVec3f(ofGetWidth()/2, ofGetHeight(), 0);
+        root_direction = ofVec3f(0, -1, 0);
+    }
     if (particles.empty()) {
         particles = generateDefaultParticles(400, use3d, trunk_length);
     }
@@ -144,8 +148,8 @@ vector<ofVec3f> ofxSpaceColonization::generateDefaultParticles(int n_particles, 
                           ofRandom(-ray,+ray));
             tmp_particles.push_back(pos);
         }else{
-            ofVec3f pos = ofVec3f(ofRandom(-ray,+ray),
-                                  ofRandom(_trunk_length, ray),
+            ofVec3f pos = ofVec3f(ofRandom(0, ofGetWidth()),
+                                  ofRandom((ofGetHeight()-trunk_length), 0),
                                   0);
             tmp_particles.push_back(pos);
         }

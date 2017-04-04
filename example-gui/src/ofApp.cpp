@@ -3,6 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     gui.setup();
+    gui.setPosition(ofGetWidth()-200, 0);
     gui.add(selectedMaxDist.set("MaxDist", 150, 90, 300));
     gui.add(selectedMinDist.set("MinDist", 10, 3, 90));
     gui.add(selectedMaxDist.set("selectedLength", 5, 2, 30));
@@ -15,11 +16,12 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    maybeDrawGui();
-    camera.begin();
+
+    //camera.begin();
     tree.draw();
-    ofDrawAxis(100);
-    camera.end();
+    maybeDrawGui();
+    //ofDrawAxis(100);
+    //camera.end();
 }
 
 void ofApp::maybeDrawGui(){

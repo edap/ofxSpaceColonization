@@ -27,11 +27,11 @@ private:
     int n_leaves = 100;
     int max_dist = 150;
     int min_dist = 10;
-    int trunk_length = 100;
+    int trunk_length = 300;
     ofVec3f root_position = ofVec3f(0.0f,0.0f,0.0f);
     ofVec3f root_direction = ofVec3f(0, 1, 0);
     vector<ofVec3f> particles;
-    bool use3d = true;
+    bool use3d = false;
     int branch_length = 5;
     bool done_growing = false;
     ofMesh mesh;
