@@ -12,6 +12,7 @@ ofxSpaceColonization::ofxSpaceColonization(){
     }
     shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(root_direction));
     root->move(root_position);
+    root->moveV(root_position, root_position);
     branches.push_back(root);
 
     for (auto vec:particles) {
@@ -32,8 +33,17 @@ ofxSpaceColonization::ofxSpaceColonization(){
         if (!found){
             shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(current->direction));
             if(!branches.empty()){
+                //OLD
                 nextBranch->setParent(branches.back());
                 nextBranch->move(current->direction * branch_length );
+
+
+
+                //exp without node
+                int lastInsertedBranchId = branches.size() -1;
+                nextBranch->setParentByIndex(lastInsertedBranchId);
+                nextBranch->moveV((current->direction * branch_length ),
+                                  branches.back()->getPosition());
             }
             addBranchToMesh(nextBranch);
             branches.push_back(nextBranch);
@@ -60,6 +70,8 @@ void ofxSpaceColonization::grow(){
             auto closestBranchIndex = -1;
             for(int i=0;i<branches.size();i++){
                 auto distance = leaves[it].getPosition().distance(branches[i]->getPosition());
+                auto vPos = branches[i]->getVPosition();
+                auto aPos = branches[i]->getPosition();
                 if(distance < min_dist){
                     leaves[it].reached = true;
                     closestBranchIndex = -1;
@@ -75,6 +87,8 @@ void ofxSpaceColonization::grow(){
             //adjust direction and count
             if(closestBranchIndex>=0 && !leaves[it].reached){
                 auto dir = (leaves[it].getPosition() - branches[closestBranchIndex]->getPosition()).normalize();
+
+                auto vdir = (leaves[it].getPosition() - branches[closestBranchIndex]->getVPosition()).normalize();
                 // here you should add some random force to avoid the situation
                 // where a branch is stucked between the attraction of 2 leaves
                 // equidistant
@@ -98,8 +112,14 @@ void ofxSpaceColonization::grow(){
                     auto newDir = branches[i]->direction / (float(branches[i]->count));
                     //auto newDir = branches[i]->direction / (float(branches[i]->count + 1));
                     shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(newDir));
+                    //OLD
                     nextBranch->setParent(branches[i]);
                     nextBranch->move(newDir.normalize() * branch_length);
+
+                    nextBranch->setParentByIndex(i);
+                    nextBranch->moveV(
+                                      (newDir.normalize() * branch_length),
+                                      branches[i]->getPosition());
                     addBranchToMesh(nextBranch);
                     newBranches.push_back(nextBranch);
                 }
@@ -130,7 +150,14 @@ void ofxSpaceColonization::draw(){
     for(int i = 0; i < branches.size(); i++){
         float lineWidth = ofMap(i, 0, branches.size(), 20, 1);
         ofSetLineWidth(lineWidth);
-        branches[i]->draw();
+        //branches[i]->draw();
+        auto parentIndex = branches[i]->indexParent;
+        auto parentPos = branches[parentIndex]->getVPosition();
+        auto pos = branches[i]->getVPosition();
+
+        ofDrawLine(parentPos.x, parentPos.y,
+                   parentPos.z, pos.x,
+                   pos.y, pos.z);
     }
 }
 
