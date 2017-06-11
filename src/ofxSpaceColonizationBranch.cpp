@@ -6,18 +6,16 @@ ofxSpaceColonizationBranch::ofxSpaceColonizationBranch(const ofVec3f _direction)
     originalDirection = _direction;
 }
 
-void ofxSpaceColonizationBranch::moveV(ofVec3f pos, ofVec3f parentPos){
+void ofxSpaceColonizationBranch::move(ofVec3f pos, ofVec3f parentPos){
     this->position = pos + parentPos;
 }
 
-ofVec3f ofxSpaceColonizationBranch::getVPosition(){
+ofVec3f ofxSpaceColonizationBranch::getPosition(){
     return this->position;
-    //return this->position;
 }
 
-void ofxSpaceColonizationBranch::setVPosition(ofVec3f pos){
+void ofxSpaceColonizationBranch::setPosition(ofVec3f pos){
     this->position = pos;
-    //return this->position;
 }
 
 void ofxSpaceColonizationBranch::reset(){

@@ -12,9 +12,9 @@ public:
     int count = 0;
 
     // try to avoid ofNode
-    ofVec3f getVPosition();
-    void setVPosition(ofVec3f pos);
-    void moveV(ofVec3f _pos, ofVec3f _parentPos);
+    ofVec3f getPosition();
+    void setPosition(ofVec3f pos);
+    void move(ofVec3f _pos, ofVec3f _parentPos);
     int indexParent = 0;
     void setParentByIndex(int parent_index) { this->indexParent = parent_index; };
     ofVec3f position;

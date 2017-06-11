@@ -5,7 +5,7 @@ ofxSpaceColonizationLeaf::ofxSpaceColonizationLeaf(ofVec3f _pos){
 }
 
 void ofxSpaceColonizationLeaf::draw(){
-    ofDrawCircle(pos.x, pos.y, raggio);
+    ofDrawCircle(pos.x, pos.y, ray);
     //ofDrawSphere(pos.x, pos.y, pos.z, raggio);
 }
 

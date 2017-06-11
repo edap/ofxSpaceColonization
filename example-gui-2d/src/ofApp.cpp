@@ -6,7 +6,7 @@ void ofApp::setup(){
     gui.setPosition(ofGetWidth()-200, 0);
     gui.add(selectedMaxDist.set("MaxDist", 150, 90, 300));
     gui.add(selectedMinDist.set("MinDist", 10, 3, 90));
-    gui.add(selectedMaxDist.set("selectedLength", 5, 2, 30));
+    gui.add(selectedLength.set("selectedLength", 5, 2, 30));
 }
 
 //--------------------------------------------------------------

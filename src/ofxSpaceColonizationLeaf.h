@@ -9,7 +9,7 @@ public:
     bool reached = false;
 
 private:
-    int raggio = 20;
+    int ray = 20;
     ofVec3f pos;
 };
 

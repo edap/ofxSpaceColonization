@@ -10,6 +10,7 @@ public:
     void build();
     void grow();
     void draw();
+
     void setMinDist(int min_dist);
     void setMaxDist(int max_dist);
     void setBranchLength(int branch_length);
@@ -34,5 +35,4 @@ private:
     bool use3d = false;
     int branch_length = 5;
     bool done_growing = false;
-    ofMesh mesh;
 };
