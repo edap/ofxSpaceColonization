@@ -4,7 +4,7 @@ ofxSpaceColonization::ofxSpaceColonization(){
 }
 
 void ofxSpaceColonization::build(){
-    if(!use3d){
+    if (!use3d) {
         root_position = glm::vec3(ofGetWidth()/2, ofGetHeight(), 0);
         root_direction = glm::vec3(0.0f, -1.0f, 0.0f);
     }
@@ -70,14 +70,14 @@ void ofxSpaceColonization::grow(){
 
             //adjust direction and count
             if (closestBranchIndex>=0 && !leaves[it].isReached()) {
-                auto dir = leaves[it].getPosition() + (-branches[closestBranchIndex]->getPosition());
+                auto dir = leaves[it].getPosition() - (branches[closestBranchIndex]->getPosition());
                 auto dirNorm = glm::normalize(dir);
 
                 // here you should add some random force to avoid the situation
                 // where a branch is stucked between the attraction of 2 leaves
                 // equidistant
-                branches[closestBranchIndex]->setDirection(branches[closestBranchIndex]->getDirection() + dirNorm);
-                branches[closestBranchIndex]->count = branches[closestBranchIndex]->count + 1;
+                branches[closestBranchIndex]->addToDirection(dirNorm);
+                branches[closestBranchIndex]->incrementCounterBy(1);
             }
 
             if (leaves[it].isReached()) {
@@ -90,8 +90,8 @@ void ofxSpaceColonization::grow(){
         vector<shared_ptr<ofxSpaceColonizationBranch>> newBranches;
         for (int i = 0; i<branches.size(); i++) {
             if (branches[i]!= nullptr) {
-                if (branches[i]->count > 0) {
-                    auto newDir = branches[i]->getDirection() / (float(branches[i]->count + 1));
+                if (branches[i]->getCount() > 0) {
+                    auto newDir = branches[i]->getDirection() / (float(branches[i]->getCount() + 1));
                     shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(newDir));
 
                     nextBranch->setParentByIndex(i);
@@ -120,24 +120,14 @@ void ofxSpaceColonization::setBranchLength(int _length){
     branch_length = _length;
 };
 
-void ofxSpaceColonization::draw2d(){
-    for (auto l:leaves) {
-        l.draw2d();
-    }
+glm::vec3 ofxSpaceColonization::getBranchPosition(int _index) const {
+    return this->branches[_index]->getPosition();
+};
 
-    for (int i = 0; i < branches.size(); i++) {
-        float lineWidth = ofMap(i, 0, branches.size(), 20, 1);
-        ofSetLineWidth(lineWidth);
-        //branches[i]->draw();
-        auto parentIndex = branches[i]->getIndexParent();
-        auto parentPos = branches[parentIndex]->getPosition();
-        auto pos = branches[i]->getPosition();
-
-        ofDrawLine(parentPos.x, parentPos.y,
-                   parentPos.z, pos.x,
-                   pos.y, pos.z);
-    }
-}
+glm::vec3 ofxSpaceColonization::getParentBranchPosition(int _index) const {
+    auto parentIndex = this->branches[_index]->getIndexParent();
+    return this->branches[parentIndex]->getPosition();
+};
 
 void ofxSpaceColonization::addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch){
     //TODO
@@ -147,7 +137,7 @@ vector<ofxSpaceColonizationLeaf> ofxSpaceColonization::getLeaves() const{
     return this->leaves;
 }
 
-vector<shared_ptr<ofxSpaceColonizationBranch>> ofxSpaceColonization::getBranches() const{
-    return this->branches;
+int ofxSpaceColonization::getSizeBranches() const{
+    return this->branches.size();
 }
 

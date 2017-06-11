@@ -2,8 +2,8 @@
 
 
 ofxSpaceColonizationBranch::ofxSpaceColonizationBranch(const glm::vec3 _direction){
-    direction = _direction;
-    originalDirection = _direction;
+    this->direction = _direction;
+    this->originalDirection = _direction;
 }
 
 void ofxSpaceColonizationBranch::move(glm::vec3 pos, glm::vec3 parentPos){
@@ -18,8 +18,16 @@ glm::vec3 ofxSpaceColonizationBranch::getDirection() const {
     return this->direction;
 };
 
-void ofxSpaceColonizationBranch::setDirection(glm::vec3 _vec){
-    this->direction = _vec;
+int ofxSpaceColonizationBranch::getCount() const {
+    return this->count;
+};
+
+void ofxSpaceColonizationBranch::addToDirection(glm::vec3 _newDir){
+    this->direction = this->direction + _newDir;
+};
+
+void ofxSpaceColonizationBranch::incrementCounterBy(int _val){
+    this->count = this->count + _val;
 };
 
 void ofxSpaceColonizationBranch::setPosition(glm::vec3 pos){

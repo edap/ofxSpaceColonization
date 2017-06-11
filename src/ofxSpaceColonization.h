@@ -11,9 +11,9 @@ public:
     void build();
     void grow();
     vector<ofxSpaceColonizationLeaf> getLeaves() const;
-    vector<shared_ptr<ofxSpaceColonizationBranch>> getBranches() const;
-
-    void draw2d(); // this method is suggested just for debugging purpose
+    int getSizeBranches() const;
+    glm::vec3 getBranchPosition(int _index) const;
+    glm::vec3 getParentBranchPosition(int _index) const;
 
     void setMinDist(int min_dist);
     void setMaxDist(int max_dist);
@@ -28,7 +28,6 @@ private:
     void addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch);
     vector<ofxSpaceColonizationLeaf> leaves;
     vector<shared_ptr<ofxSpaceColonizationBranch>> branches;
-    int n_leaves = 100;
     int max_dist = 150;
     int min_dist = 10;
     int trunk_length = 300;
