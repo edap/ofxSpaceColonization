@@ -11,10 +11,8 @@ ofxSpaceColonization::ofxSpaceColonization(){
         particles = generateDefaultParticles(400, use3d, trunk_length);
     }
     shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(root_direction));
-    root->move(root_position);
+    //root->move(root_position);
     root->moveV(ofVec3f(0,0,0), root_position);
-    auto a = root->getVPosition();
-    auto b = root ->getPosition();
     branches.push_back(root);
 
     for (auto vec:particles) {
@@ -24,7 +22,7 @@ ofxSpaceColonization::ofxSpaceColonization(){
     auto current = root;
     bool found = false;
     while(!found){
-        ofVec3f cur = current->getPosition();
+        ofVec3f cur = current->getVPosition();
         for(auto l:leaves){
             float distance = cur.distance(l.getPosition());
             if(distance < max_dist){
@@ -36,8 +34,8 @@ ofxSpaceColonization::ofxSpaceColonization(){
             shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(current->direction));
             if(!branches.empty()){
                 //OLD
-                nextBranch->setParent(branches.back());
-                nextBranch->move(current->direction * branch_length );
+                //nextBranch->setParent(branches.back());
+                //nextBranch->move(current->direction * branch_length );
 
                 int lastInsertedBranchId = branches.size() -1;
                 nextBranch->setParentByIndex(lastInsertedBranchId);
@@ -70,7 +68,6 @@ void ofxSpaceColonization::grow(){
             for(int i=0;i<branches.size();i++){
                 auto distance = leaves[it].getPosition().distance(branches[i]->getVPosition());
                 auto vPos = branches[i]->getVPosition();
-                auto aPos = branches[i]->getPosition();
                 if(distance < min_dist){
                     leaves[it].reached = true;
                     closestBranchIndex = -1;
