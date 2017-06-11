@@ -12,7 +12,9 @@ ofxSpaceColonization::ofxSpaceColonization(){
     }
     shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(root_direction));
     root->move(root_position);
-    root->moveV(root_position, root_position);
+    root->moveV(ofVec3f(0,0,0), root_position);
+    auto a = root->getVPosition();
+    auto b = root ->getPosition();
     branches.push_back(root);
 
     for (auto vec:particles) {
@@ -37,13 +39,10 @@ ofxSpaceColonization::ofxSpaceColonization(){
                 nextBranch->setParent(branches.back());
                 nextBranch->move(current->direction * branch_length );
 
-
-
-                //exp without node
                 int lastInsertedBranchId = branches.size() -1;
                 nextBranch->setParentByIndex(lastInsertedBranchId);
                 nextBranch->moveV((current->direction * branch_length ),
-                                  branches.back()->getPosition());
+                                  branches.back()->getVPosition());
             }
             addBranchToMesh(nextBranch);
             branches.push_back(nextBranch);
@@ -62,14 +61,14 @@ void ofxSpaceColonization::grow(){
     // invece continua a salire
 
     if(!done_growing){
-        cout << branches.size() << endl;
+        //cout << branches.size() << endl;
         //process leaves
         for(int it=0;it<leaves.size();it++){
             float record = 10000.0;
 
             auto closestBranchIndex = -1;
             for(int i=0;i<branches.size();i++){
-                auto distance = leaves[it].getPosition().distance(branches[i]->getPosition());
+                auto distance = leaves[it].getPosition().distance(branches[i]->getVPosition());
                 auto vPos = branches[i]->getVPosition();
                 auto aPos = branches[i]->getPosition();
                 if(distance < min_dist){
@@ -86,7 +85,7 @@ void ofxSpaceColonization::grow(){
 
             //adjust direction and count
             if(closestBranchIndex>=0 && !leaves[it].reached){
-                auto dir = (leaves[it].getPosition() - branches[closestBranchIndex]->getPosition()).normalize();
+                auto dir = (leaves[it].getPosition() - branches[closestBranchIndex]->getVPosition()).normalize();
 
                 auto vdir = (leaves[it].getPosition() - branches[closestBranchIndex]->getVPosition()).normalize();
                 // here you should add some random force to avoid the situation
@@ -119,7 +118,7 @@ void ofxSpaceColonization::grow(){
                     nextBranch->setParentByIndex(i);
                     nextBranch->moveV(
                                       (newDir.normalize() * branch_length),
-                                      branches[i]->getPosition());
+                                      branches[i]->getVPosition());
                     addBranchToMesh(nextBranch);
                     newBranches.push_back(nextBranch);
                 }
