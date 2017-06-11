@@ -12,6 +12,7 @@
 		483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D67A00EB899FAC09430597 /* ofxLabel.cpp */; };
 		5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88333E71C9457E441C33474 /* ofxButton.cpp */; };
 		6D6ED797409851E47671AAB2 /* ofxSpaceColonizationBranch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4996208300E8CD368C97F6C8 /* ofxSpaceColonizationBranch.cpp */; };
+		6F3DBD2D1EED3A3500FF07A3 /* ofxSpaceColonizationHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3DBD2B1EED3A3500FF07A3 /* ofxSpaceColonizationHelper.cpp */; };
 		837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
 		856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9604B925D32EE39065747725 /* ofxBaseGui.cpp */; };
 		B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECF8674C7975F1063C5E30CA /* ofxGuiGroup.cpp */; };
@@ -63,6 +64,8 @@
 		4996208300E8CD368C97F6C8 /* ofxSpaceColonizationBranch.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxSpaceColonizationBranch.cpp; path = ../src/ofxSpaceColonizationBranch.cpp; sourceTree = SOURCE_ROOT; };
 		52AFA1F08C420992CAAAE648 /* ofxSlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSlider.h; path = ../../ofxGui/src/ofxSlider.h; sourceTree = SOURCE_ROOT; };
 		602D5FFB808E83BC68EC2753 /* ofxSpaceColonizationBranch.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSpaceColonizationBranch.h; path = ../src/ofxSpaceColonizationBranch.h; sourceTree = SOURCE_ROOT; };
+		6F3DBD2B1EED3A3500FF07A3 /* ofxSpaceColonizationHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSpaceColonizationHelper.cpp; sourceTree = "<group>"; };
+		6F3DBD2C1EED3A3500FF07A3 /* ofxSpaceColonizationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSpaceColonizationHelper.h; sourceTree = "<group>"; };
 		782262133345A8C896568AE4 /* ofxSpaceColonizationLeaf.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxSpaceColonizationLeaf.cpp; path = ../src/ofxSpaceColonizationLeaf.cpp; sourceTree = SOURCE_ROOT; };
 		78D67A00EB899FAC09430597 /* ofxLabel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxLabel.cpp; path = ../../ofxGui/src/ofxLabel.cpp; sourceTree = SOURCE_ROOT; };
 		802251BAF1B35B1D67B32FD0 /* ofxSliderGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxSliderGroup.cpp; path = ../../ofxGui/src/ofxSliderGroup.cpp; sourceTree = SOURCE_ROOT; };
@@ -154,6 +157,8 @@
 				602D5FFB808E83BC68EC2753 /* ofxSpaceColonizationBranch.h */,
 				782262133345A8C896568AE4 /* ofxSpaceColonizationLeaf.cpp */,
 				28DD1724436A50D3EBEA02AD /* ofxSpaceColonizationLeaf.h */,
+				6F3DBD2B1EED3A3500FF07A3 /* ofxSpaceColonizationHelper.cpp */,
+				6F3DBD2C1EED3A3500FF07A3 /* ofxSpaceColonizationHelper.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -307,6 +312,7 @@
 				D86B9250120ABA227D79720C /* ofxSpaceColonization.cpp in Sources */,
 				6D6ED797409851E47671AAB2 /* ofxSpaceColonizationBranch.cpp in Sources */,
 				0D57F734D3AA06EC434C7D66 /* ofxSpaceColonizationLeaf.cpp in Sources */,
+				6F3DBD2D1EED3A3500FF07A3 /* ofxSpaceColonizationHelper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,7 @@ public:
     ofxSpaceColonizationLeaf(ofVec3f vec);
     void draw();
     ofVec3f getPosition();
+    void setRay(int _ray);
     bool reached = false;
 
 private:

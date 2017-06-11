@@ -3,18 +3,23 @@
 ofxSpaceColonization::ofxSpaceColonization(){
     //auto rootPos = ofVec3f(0, 0, 0);
     //auto rootDir = ofVec3f(0, 1, 0);
+
+}
+
+void ofxSpaceColonization::build(){
+    //TODO, prima setti tutte le variabili e poi chiami build
     if(!use3d){
         root_position = ofVec3f(ofGetWidth()/2, ofGetHeight(), 0);
         root_direction = ofVec3f(0, -1, 0);
     }
-    if (particles.empty()) {
-        particles = generateDefaultParticles(400, use3d, trunk_length);
+    if (leaves_positions.empty()) {
+        leaves_positions = ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, use3d, trunk_length);
     }
     shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(root_direction));
     root->move(ofVec3f(0,0,0), root_position);
     branches.push_back(root);
 
-    for (auto vec:particles) {
+    for (auto vec:leaves_positions) {
         leaves.push_back(ofxSpaceColonizationLeaf(vec));
     }
 
@@ -35,17 +40,13 @@ ofxSpaceColonization::ofxSpaceColonization(){
                 int lastInsertedBranchId = branches.size() -1;
                 nextBranch->setParentByIndex(lastInsertedBranchId);
                 nextBranch->move((current->direction * branch_length ),
-                                  branches.back()->getPosition());
+                                 branches.back()->getPosition());
             }
             addBranchToMesh(nextBranch);
             branches.push_back(nextBranch);
             current = branches.back();
         }
     }
-}
-
-void ofxSpaceColonization::build(){
-    //TODO, prima setti tutte le variabili e poi chiami build
 
 }
 
@@ -152,22 +153,3 @@ void ofxSpaceColonization::addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch
     //TODO
 }
 
-vector<ofVec3f> ofxSpaceColonization::generateDefaultParticles(int n_particles, bool use3d, int _trunk_length) const{
-    vector<ofVec3f> tmp_particles;
-    int ray = 400;
-    for(int i = 0; i< n_particles; i++){
-        if(use3d){
-            ofVec3f pos = ofVec3f(ofRandom(-ray,+ray),
-                          ofRandom(_trunk_length, ray),
-                          ofRandom(-ray,+ray));
-            tmp_particles.push_back(pos);
-        }else{
-            ofVec3f pos = ofVec3f(ofRandom(0, ofGetWidth()),
-                                  ofRandom((ofGetHeight()-trunk_length), 0),
-                                  0);
-            tmp_particles.push_back(pos);
-        }
-
-    }
-    return tmp_particles;
-}
