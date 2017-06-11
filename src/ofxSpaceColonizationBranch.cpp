@@ -10,12 +10,24 @@ void ofxSpaceColonizationBranch::move(glm::vec3 pos, glm::vec3 parentPos){
     this->position = pos + parentPos;
 }
 
-glm::vec3 ofxSpaceColonizationBranch::getPosition(){
+glm::vec3 ofxSpaceColonizationBranch::getPosition() const {
     return this->position;
 }
 
+glm::vec3 ofxSpaceColonizationBranch::getDirection() const {
+    return this->direction;
+};
+
+void ofxSpaceColonizationBranch::setDirection(glm::vec3 _vec){
+    this->direction = _vec;
+};
+
 void ofxSpaceColonizationBranch::setPosition(glm::vec3 pos){
     this->position = pos;
+}
+
+int ofxSpaceColonizationBranch::getIndexParent() const{
+    return this->indexParent;
 }
 
 void ofxSpaceColonizationBranch::reset(){
@@ -23,11 +35,4 @@ void ofxSpaceColonizationBranch::reset(){
     this->count = 0;
 }
 
-void ofxSpaceColonizationBranch::draw(){
-//    if(this->node.getParent() != nullptr){
-//        auto pos = this->node.getGlobalPosition();
-//        auto parentPos = this->node.getParent()->getGlobalPosition();
-//        ofDrawLine(parentPos.x, parentPos.y, parentPos.z, pos.x, pos.y, pos.z);
-//    }
-}
 

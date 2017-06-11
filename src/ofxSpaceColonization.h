@@ -10,7 +10,10 @@ public:
 	ofxSpaceColonization();
     void build();
     void grow();
-    void draw2d();
+    vector<ofxSpaceColonizationLeaf> getLeaves() const;
+    vector<shared_ptr<ofxSpaceColonizationBranch>> getBranches() const;
+
+    void draw2d(); // this method is suggested just for debugging purpose
 
     void setMinDist(int min_dist);
     void setMaxDist(int max_dist);
@@ -24,7 +27,7 @@ public:
 private:
     void addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch);
     vector<ofxSpaceColonizationLeaf> leaves;
-    std::vector<shared_ptr<ofxSpaceColonizationBranch>> branches;
+    vector<shared_ptr<ofxSpaceColonizationBranch>> branches;
     int n_leaves = 100;
     int max_dist = 150;
     int min_dist = 10;
