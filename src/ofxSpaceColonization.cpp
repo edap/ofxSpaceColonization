@@ -1,22 +1,18 @@
 #include "ofxSpaceColonization.h"
 // http://www.jgallant.com/procedurally-generating-trees-with-space-colonization-algorithm-in-xna/
 ofxSpaceColonization::ofxSpaceColonization(){
-    //auto rootPos = ofVec3f(0, 0, 0);
-    //auto rootDir = ofVec3f(0, 1, 0);
-
 }
 
 void ofxSpaceColonization::build(){
-    //TODO, prima setti tutte le variabili e poi chiami build
     if(!use3d){
-        root_position = ofVec3f(ofGetWidth()/2, ofGetHeight(), 0);
-        root_direction = ofVec3f(0, -1, 0);
+        root_position = glm::vec3(ofGetWidth()/2, ofGetHeight(), 0);
+        root_direction = glm::vec3(0.0f, -1.0f, 0.0f);
     }
     if (leaves_positions.empty()) {
         leaves_positions = ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, use3d, trunk_length);
     }
     shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(root_direction));
-    root->move(ofVec3f(0,0,0), root_position);
+    root->move(glm::vec3(0.0f,0.0f,0.0f), root_position);
     branches.push_back(root);
 
     for (auto vec:leaves_positions) {
@@ -26,9 +22,9 @@ void ofxSpaceColonization::build(){
     auto current = root;
     bool found = false;
     while(!found){
-        ofVec3f cur = current->getPosition();
+        glm::vec3 cur = current->getPosition();
         for(auto l:leaves){
-            float distance = cur.distance(l.getPosition());
+            float distance = glm::distance(cur, l.getPosition());
             if(distance < max_dist){
                 found = true;
             }
@@ -47,22 +43,19 @@ void ofxSpaceColonization::build(){
             current = branches.back();
         }
     }
-
 }
 
 void ofxSpaceColonization::grow(){
-    //arrivati verso la fine questo numero dovrebbe smettere di crescere
-    // invece continua a salire
-
     if(!done_growing){
-        //cout << branches.size() << endl;
+        cout << branches.size() << endl;
         //process leaves
         for(int it=0;it<leaves.size();it++){
             float record = 10000.0;
 
             auto closestBranchIndex = -1;
             for(int i=0;i<branches.size();i++){
-                auto distance = leaves[it].getPosition().distance(branches[i]->getPosition());
+                auto distance = glm::distance(leaves[it].getPosition(), branches[i]->getPosition());
+                //cout << distance << endl;
                 auto vPos = branches[i]->getPosition();
                 if(distance < min_dist){
                     leaves[it].reached = true;
@@ -78,13 +71,14 @@ void ofxSpaceColonization::grow(){
 
             //adjust direction and count
             if(closestBranchIndex>=0 && !leaves[it].reached){
-                auto dir = (leaves[it].getPosition() - branches[closestBranchIndex]->getPosition()).normalize();
 
-                auto vdir = (leaves[it].getPosition() - branches[closestBranchIndex]->getPosition()).normalize();
+                auto dir = leaves[it].getPosition() + (-branches[closestBranchIndex]->getPosition());
+                auto dirNorm = glm::normalize(dir);
+
                 // here you should add some random force to avoid the situation
                 // where a branch is stucked between the attraction of 2 leaves
                 // equidistant
-                branches[closestBranchIndex]->direction = branches[closestBranchIndex]->direction + dir;
+                branches[closestBranchIndex]->direction = branches[closestBranchIndex]->direction + dirNorm;
                 branches[closestBranchIndex]->count = branches[closestBranchIndex]->count + 1;
             }
 
@@ -102,11 +96,12 @@ void ofxSpaceColonization::grow(){
                 if(branches[i]->count > 0){
                     //auto newDir = branches[i]->direction / (float(branches[i]->count));
                     auto newDir = branches[i]->direction / (float(branches[i]->count + 1));
+                    // 1 cout << branches[i]->direction << endl;
                     shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(newDir));
 
                     nextBranch->setParentByIndex(i);
                     nextBranch->move(
-                                      (newDir.normalize() * branch_length),
+                                     (glm::normalize(newDir) * branch_length),
                                       branches[i]->getPosition());
                     addBranchToMesh(nextBranch);
                     newBranches.push_back(nextBranch);

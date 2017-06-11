@@ -1,6 +1,6 @@
 #include "ofxSpaceColonizationLeaf.h"
 
-ofxSpaceColonizationLeaf::ofxSpaceColonizationLeaf(ofVec3f _pos){
+ofxSpaceColonizationLeaf::ofxSpaceColonizationLeaf(glm::vec3 _pos){
     pos = _pos;
 }
 
@@ -8,7 +8,7 @@ void ofxSpaceColonizationLeaf::draw2d(){
     ofDrawCircle(pos.x, pos.y, ray);
 }
 
-ofVec3f ofxSpaceColonizationLeaf::getPosition(){
+glm::vec3 ofxSpaceColonizationLeaf::getPosition(){
     return pos;
 }
 

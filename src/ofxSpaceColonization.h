@@ -16,9 +16,9 @@ public:
     void setMaxDist(int max_dist);
     void setBranchLength(int branch_length);
     void setTrunkLength(int trunk_length);
-    void setRootDirection(ofVec3f root_direction);
-    void setRootPosition(ofVec3f root_position);
-    void setLeavesPositions(vector<ofVec3f> leaves_positions);
+    void setRootDirection(glm::vec3 root_direction);
+    void setRootPosition(glm::vec3 root_position);
+    void setLeavesPositions(vector<glm::vec3> leaves_positions);
     void set3d(bool use3d);
 
 private:
@@ -29,9 +29,9 @@ private:
     int max_dist = 150;
     int min_dist = 10;
     int trunk_length = 300;
-    ofVec3f root_position = ofVec3f(0.0f,0.0f,0.0f);
-    ofVec3f root_direction = ofVec3f(0, 1, 0);
-    vector<ofVec3f> leaves_positions;
+    glm::vec3 root_position = glm::vec3(0.0f,0.0f,0.0f);
+    glm::vec3 root_direction = glm::vec3(0.0f, 1.0f, 0.0f);
+    vector<glm::vec3> leaves_positions;
     bool use3d = false;
     int branch_length = 5;
     bool done_growing = false;

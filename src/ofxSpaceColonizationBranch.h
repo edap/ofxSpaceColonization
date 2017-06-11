@@ -3,21 +3,20 @@
 class ofxSpaceColonizationBranch{
 
 public:
-    ofxSpaceColonizationBranch(ofVec3f _direction);
+    ofxSpaceColonizationBranch(glm::vec3 _direction);
     void draw();
     void reset();
 
-    ofVec3f direction;
-    ofVec3f originalDirection;
+    glm::vec3 direction;
+    glm::vec3 originalDirection;
     int count = 0;
 
-    // try to avoid ofNode
-    ofVec3f getPosition();
-    void setPosition(ofVec3f pos);
-    void move(ofVec3f _pos, ofVec3f _parentPos);
+    glm::vec3 getPosition();
+    void setPosition(glm::vec3 pos);
+    void move(glm::vec3 _pos, glm::vec3 _parentPos);
     int indexParent = 0;
     void setParentByIndex(int parent_index) { this->indexParent = parent_index; };
-    ofVec3f position;
+    glm::vec3 position;
 
 };
 

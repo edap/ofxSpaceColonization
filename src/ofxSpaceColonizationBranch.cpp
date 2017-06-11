@@ -1,20 +1,20 @@
 #include "ofxSpaceColonizationBranch.h"
 
 
-ofxSpaceColonizationBranch::ofxSpaceColonizationBranch(const ofVec3f _direction){
+ofxSpaceColonizationBranch::ofxSpaceColonizationBranch(const glm::vec3 _direction){
     direction = _direction;
     originalDirection = _direction;
 }
 
-void ofxSpaceColonizationBranch::move(ofVec3f pos, ofVec3f parentPos){
+void ofxSpaceColonizationBranch::move(glm::vec3 pos, glm::vec3 parentPos){
     this->position = pos + parentPos;
 }
 
-ofVec3f ofxSpaceColonizationBranch::getPosition(){
+glm::vec3 ofxSpaceColonizationBranch::getPosition(){
     return this->position;
 }
 
-void ofxSpaceColonizationBranch::setPosition(ofVec3f pos){
+void ofxSpaceColonizationBranch::setPosition(glm::vec3 pos){
     this->position = pos;
 }
 

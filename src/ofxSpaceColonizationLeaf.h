@@ -3,15 +3,14 @@
 class ofxSpaceColonizationLeaf {
 
 public:
-    ofxSpaceColonizationLeaf(ofVec3f vec);
+    ofxSpaceColonizationLeaf(glm::vec3 vec);
     void draw2d();
-    ofVec3f getPosition();
+    glm::vec3 getPosition();
     void setRay(int _ray);
     bool reached = false;
 
 private:
     int ray = 20;
-    ofVec3f pos;
-    glm::vec3 posG;
+    glm::vec3 pos;
 };
 
