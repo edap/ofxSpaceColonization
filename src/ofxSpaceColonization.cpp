@@ -130,9 +130,9 @@ void ofxSpaceColonization::setBranchLength(int _length){
     branch_length = _length;
 };
 
-void ofxSpaceColonization::draw(){
+void ofxSpaceColonization::draw2d(){
     for(auto l:leaves){
-        l.draw();
+        l.draw2d();
     }
 
     for(int i = 0; i < branches.size(); i++){

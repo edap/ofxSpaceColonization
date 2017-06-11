@@ -17,7 +17,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    tree.draw();
+    tree.draw2d();
     maybeDrawGui();
 }
 

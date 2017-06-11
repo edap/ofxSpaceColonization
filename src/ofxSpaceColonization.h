@@ -10,7 +10,7 @@ public:
 	ofxSpaceColonization();
     void build();
     void grow();
-    void draw();
+    void draw2d();
 
     void setMinDist(int min_dist);
     void setMaxDist(int max_dist);
