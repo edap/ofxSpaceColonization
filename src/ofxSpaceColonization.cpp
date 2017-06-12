@@ -4,12 +4,12 @@ ofxSpaceColonization::ofxSpaceColonization(){
 }
 
 void ofxSpaceColonization::build(){
-    if (!use3d) {
+    if (use2d) {
         root_position = glm::vec3(ofGetWidth()/2, ofGetHeight(), 0);
         root_direction = glm::vec3(0.0f, -1.0f, 0.0f);
     }
     if (leaves_positions.empty()) {
-        leaves_positions = ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, use3d, trunk_length);
+        leaves_positions = ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, use2d, trunk_length);
     }
     shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(root_direction));
     root->move(glm::vec3(0.0f,0.0f,0.0f), root_position);
@@ -38,7 +38,7 @@ void ofxSpaceColonization::build(){
                              branches.back()->getPosition());
             branches.push_back(nextBranch);
             current = branches.back();
-            if (use3d) {
+            if (!use2d) {
                 //addBranchToMesh();
             }
         }
@@ -116,6 +116,10 @@ void ofxSpaceColonization::setMaxDist(int _max_dist){
     max_dist = _max_dist;
 };
 
+void ofxSpaceColonization::set2d(bool _val){
+    this->use2d = _val;
+};
+
 void ofxSpaceColonization::setBranchLength(int _length){
     branch_length = _length;
 };
@@ -129,9 +133,17 @@ glm::vec3 ofxSpaceColonization::getParentBranchPosition(int _index) const {
     return this->branches[parentIndex]->getPosition();
 };
 
-void ofxSpaceColonization::addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch){
+//template <class ofxSpaceColonizationGeom>void ofxSpaceColonization::addBranchToMesh(ofxSpaceColonizationGeom geom){
+//    //TODO
+//}
+
+void ofxSpaceColonization::addBranchToMesh(ofxSpaceColonizationTu geom){
+    if (!use2d) {
+
+    }
     //TODO
 }
+
 
 vector<ofxSpaceColonizationLeaf> ofxSpaceColonization::getLeaves() const{
     return this->leaves;

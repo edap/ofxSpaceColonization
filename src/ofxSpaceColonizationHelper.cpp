@@ -2,12 +2,12 @@
 
 
 const vector<glm::vec3> ofxSpaceColonizationHelper::genRandomLeavesPositions(
-        int _width, int _height, int n_particles, bool use3d, int _trunk_length
+        int _width, int _height, int n_particles, bool use2d, int _trunk_length
                 ){
     vector<glm::vec3> tmp_particles;
     int ray = 400;
     for (int i = 0; i< n_particles; i++) {
-        if (use3d) {
+        if (!use2d) {
             glm::vec3 pos = glm::vec3(ofRandom(-ray,+ray),
                                   ofRandom(_trunk_length, ray),
                                   ofRandom(-ray,+ray));
