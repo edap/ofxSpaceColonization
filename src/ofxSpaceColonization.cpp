@@ -30,17 +30,17 @@ void ofxSpaceColonization::build(){
             }
         }
 
-        if (!found) {
+        if (!found && !branches.empty()) {
             shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(current->getDirection()));
-            if (!branches.empty()) {
-                int lastInsertedBranchId = branches.size() -1;
-                nextBranch->setParentByIndex(lastInsertedBranchId);
-                nextBranch->move((current->getDirection() * branch_length ),
-                                 branches.back()->getPosition());
-            }
-            addBranchToMesh(nextBranch);
+            int lastInsertedBranchId = branches.size() -1;
+            nextBranch->setParentByIndex(lastInsertedBranchId);
+            nextBranch->move((current->getDirection() * branch_length ),
+                             branches.back()->getPosition());
             branches.push_back(nextBranch);
             current = branches.back();
+            if (use3d) {
+                //addBranchToMesh();
+            }
         }
     }
 }
