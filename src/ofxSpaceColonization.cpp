@@ -9,7 +9,7 @@ void ofxSpaceColonization::build(){
         root_direction = glm::vec3(0.0f, -1.0f, 0.0f);
     }
     if (leaves_positions.empty()) {
-        leaves_positions = ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 40, use2d, trunk_length);
+        leaves_positions = ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, use2d, trunk_length);
     }
     shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(root_direction));
     root->move(glm::vec3(0.0f,0.0f,0.0f), root_position);
