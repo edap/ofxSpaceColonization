@@ -30,13 +30,13 @@ void ofxSpaceColonizationBranch::incrementCounterBy(int _val){
     this->count = this->count + _val;
 };
 
-void ofxSpaceColonizationBranch::setPosition(glm::vec3 pos){
-    this->position = pos;
-}
-
 int ofxSpaceColonizationBranch::getIndexParent() const{
     return this->indexParent;
 }
+
+void ofxSpaceColonizationBranch::setParentByIndex(int parent_index) {
+    this->indexParent = parent_index;
+};
 
 void ofxSpaceColonizationBranch::reset(){
     this->direction = this->originalDirection;
