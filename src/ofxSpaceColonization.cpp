@@ -9,7 +9,7 @@ void ofxSpaceColonization::build(){
         root_direction = glm::vec3(0.0f, -1.0f, 0.0f);
     }
     if (leaves_positions.empty()) {
-        leaves_positions = ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, use2d, trunk_length);
+        leaves_positions = ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 40, use2d, trunk_length);
     }
     shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(root_direction));
     root->move(glm::vec3(0.0f,0.0f,0.0f), root_position);
@@ -21,6 +21,7 @@ void ofxSpaceColonization::build(){
 
     auto current = root;
     bool found = false;
+    // we build the trunk,adding a branch after another, until we do not reach the foliage
     while (!found) {
         glm::vec3 cur = current->getPosition();
         for (auto l:leaves) {
@@ -34,20 +35,21 @@ void ofxSpaceColonization::build(){
             shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(current->getDirection()));
             int lastInsertedBranchId = branches.size() -1;
             nextBranch->setParentByIndex(lastInsertedBranchId);
-            nextBranch->move((current->getDirection() * branch_length ),
-                             branches.back()->getPosition());
+            auto dir = current->getDirection();
+            auto posEnd = dir * branch_length;
+            auto posStart = branches.back()->getPosition();
+            nextBranch->move(posEnd, posStart);
+            cout << posEnd << endl;
             branches.push_back(nextBranch);
             current = branches.back();
-            if (!use2d) {
-                //addBranchToMesh();
-            }
+            addBranchToMesh((posEnd+posStart), posStart,dir);
         }
     }
 }
 
 void ofxSpaceColonization::grow(){
     if (!done_growing) {
-        cout << branches.size() << endl;
+        //cout << branches.size() << endl;
         //process leaves
         for (int it=0;it<leaves.size();it++) {
             float record = 10000.0;
@@ -89,16 +91,16 @@ void ofxSpaceColonization::grow(){
         //Generate the new branches
         vector<shared_ptr<ofxSpaceColonizationBranch>> newBranches;
         for (int i = 0; i<branches.size(); i++) {
-            if (branches[i]!= nullptr) {
+            if (branches[i] != nullptr) {
                 if (branches[i]->getCount() > 0) {
                     auto newDir = branches[i]->getDirection() / (float(branches[i]->getCount() + 1));
                     shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(newDir));
 
                     nextBranch->setParentByIndex(i);
-                    nextBranch->move(
-                                     (glm::normalize(newDir) * branch_length),
-                                      branches[i]->getPosition());
-                    addBranchToMesh(nextBranch);
+                    glm::vec3 endPos = glm::normalize(newDir) * branch_length;
+                    glm::vec3 startPos = branches[i]->getPosition();
+                    nextBranch->move(endPos,startPos);
+                    addBranchToMesh((endPos+startPos), startPos, newDir);
                     newBranches.push_back(nextBranch);
                 }
                 branches[i]->reset();
@@ -108,6 +110,8 @@ void ofxSpaceColonization::grow(){
     }
 
 }
+
+
 void ofxSpaceColonization::setMinDist(int _min_dist){
     min_dist = _min_dist;
 };
@@ -124,6 +128,10 @@ void ofxSpaceColonization::setBranchLength(int _length){
     branch_length = _length;
 };
 
+void ofxSpaceColonization::setTrunkLength(int _length){
+    trunk_length = _length;
+};
+
 glm::vec3 ofxSpaceColonization::getBranchPosition(int _index) const {
     return this->branches[_index]->getPosition();
 };
@@ -137,11 +145,16 @@ glm::vec3 ofxSpaceColonization::getParentBranchPosition(int _index) const {
 //    //TODO
 //}
 
-void ofxSpaceColonization::addBranchToMesh(ofxSpaceColonizationTu geom){
+void ofxSpaceColonization::addBranchToMesh(glm::vec3 posEnd, glm::vec3 posStart,
+                                           glm::vec3 direction){
     if (!use2d) {
-
+        auto branchMesh = ofxSpaceColonizationTu(posEnd, posStart, direction, this->mesh);
     }
     //TODO
+}
+
+void ofxSpaceColonization::draw3d(){
+    this->mesh.drawWireframe();
 }
 
 
