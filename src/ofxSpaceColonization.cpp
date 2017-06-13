@@ -9,7 +9,7 @@ void ofxSpaceColonization::build(){
         root_direction = glm::vec3(0.0f, -1.0f, 0.0f);
     }
     if (leaves_positions.empty()) {
-        leaves_positions = ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, use2d, trunk_length);
+        leaves_positions = ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 40, use2d, trunk_length);
     }
     shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(root_direction));
     root->move(glm::vec3(0.0f,0.0f,0.0f), root_position);
@@ -80,6 +80,7 @@ void ofxSpaceColonization::grow(){
             if (closestBranchIndex>=0 && !leaves[it].isReached()) {
                 auto dir = leaves[it].getPosition() - (branches[closestBranchIndex]->getPosition());
                 auto dirNorm = glm::normalize(dir);
+                cout << "counter" << endl;
 
                 // here you should add some random force to avoid the situation
                 // where a branch is stucked between the attraction of 2 leaves
