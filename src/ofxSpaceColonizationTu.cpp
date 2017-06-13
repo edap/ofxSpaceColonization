@@ -1,11 +1,10 @@
 #include "ofxSpaceColonizationTu.h"
 
 ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec3 endPos, glm::vec3 startPos, glm::vec3 dir, ofMesh& mesh){
-    cout << startPos << endl;
     bool cap = false;
     float length = glm::distance(startPos, endPos);
-    const int radius = 8;//branch.capSizes.first;
-    const int scaledRadius = 8;//branch.capSizes.second;
+    const int radius = 8;
+    const int scaledRadius = 8;//for now, do not scale the branches;
 
     // these variables are used to do not stretch the texture
     float circumferenceBottom = radius * 3.1415926f;
