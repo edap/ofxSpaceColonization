@@ -11,6 +11,7 @@ public:
 	ofxSpaceColonization();
     void build();
     void grow();
+    void drawWireframe();
     void draw3d();
     //template <class ofxSpaceColonizationGeom>
     //void grow2(ofxSpaceColonizationGeom geom);

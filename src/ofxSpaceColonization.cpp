@@ -9,7 +9,7 @@ void ofxSpaceColonization::build(){
         root_direction = glm::vec3(0.0f, -1.0f, 0.0f);
     }
     if (leaves_positions.empty()) {
-        leaves_positions = ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 40, use2d, trunk_length);
+        leaves_positions = ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, use2d, trunk_length);
     }
     shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(root_direction));
     root->move(glm::vec3(0.0f,0.0f,0.0f), root_position);
@@ -48,6 +48,7 @@ void ofxSpaceColonization::build(){
 }
 
 void ofxSpaceColonization::grow(){
+    float record = -1;
     cout << "size" << endl;
     cout << leaves.size() << endl;
     if (!done_growing) {
@@ -59,7 +60,7 @@ void ofxSpaceColonization::grow(){
         cout << branches.size() << endl;
         //process leaves
         for (int it=0;it<leaves.size();it++) {
-            float record = 10000.0;
+            //float record = 10000.0;
             //Find the nearest branch for this leaf
             auto closestBranchIndex = -1;
             for (int i=0;i<branches.size();i++) {
@@ -164,9 +165,12 @@ void ofxSpaceColonization::addBranchToMesh(glm::vec3 posEnd, glm::vec3 posStart,
 }
 
 void ofxSpaceColonization::draw3d(){
-    this->mesh.drawWireframe();
+    this->mesh.draw();
 }
 
+void ofxSpaceColonization::drawWireframe(){
+    this->mesh.drawWireframe();
+}
 
 vector<ofxSpaceColonizationLeaf> ofxSpaceColonization::getLeaves() const{
     return this->leaves;
