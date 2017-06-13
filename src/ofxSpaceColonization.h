@@ -37,7 +37,7 @@ private:
     vector<shared_ptr<ofxSpaceColonizationBranch>> branches;
     int max_dist = 150;
     int min_dist = 10;
-    int trunk_length = 300;
+    int trunk_length = 150;
     glm::vec3 root_position = glm::vec3(0.0f,0.0f,0.0f);
     glm::vec3 root_direction = glm::vec3(0.0f, 1.0f, 0.0f);
     vector<glm::vec3> leaves_positions;
