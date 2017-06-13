@@ -10,7 +10,7 @@ const vector<glm::vec3> ofxSpaceColonizationHelper::genRandomLeavesPositions(
         if (!use2d) {
     
             glm::vec3 pos = glm::vec3(ofRandom(-ray,+ray),
-                                  ofRandom(_trunk_length, ray),
+                                  ofRandom(_trunk_length, 600),
                                   //0);
                                   ofRandom(-ray,+ray));
             tmp_particles.push_back(pos);
