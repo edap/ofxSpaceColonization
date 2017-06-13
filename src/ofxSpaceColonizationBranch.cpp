@@ -6,8 +6,8 @@ ofxSpaceColonizationBranch::ofxSpaceColonizationBranch(const glm::vec3 _directio
     this->originalDirection = _direction;
 }
 
-void ofxSpaceColonizationBranch::move(glm::vec3 pos, glm::vec3 parentPos){
-    this->position = pos + parentPos;
+void ofxSpaceColonizationBranch::move(glm::vec3 dest){
+    this->position = dest;
 }
 
 glm::vec3 ofxSpaceColonizationBranch::getPosition() const {

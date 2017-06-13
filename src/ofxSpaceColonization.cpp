@@ -12,7 +12,7 @@ void ofxSpaceColonization::build(){
         leaves_positions = ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, use2d, trunk_length);
     }
     shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(root_direction));
-    root->move(glm::vec3(0.0f,0.0f,0.0f), root_position);
+    root->move(glm::vec3(0.0f,0.0f,0.0f) + root_position);
     branches.push_back(root);
 
     for (auto vec:leaves_positions) {
@@ -32,17 +32,19 @@ void ofxSpaceColonization::build(){
         }
 
         if (!found && !branches.empty()) {
-            shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(current->getDirection()));
+            glm::vec3 parentDir = current->getDirection();
+            glm::vec3 parentPos = branches.back()->getPosition();
+            glm::vec3 newDir = parentDir;
+            glm::vec3 newPos = parentPos + (newDir * branch_length);
+
+            shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(parentDir));
             int lastInsertedBranchId = branches.size() -1;
             nextBranch->setParentByIndex(lastInsertedBranchId);
-            auto dir = current->getDirection();
-            auto posEnd = dir * branch_length;
-            auto posStart = branches.back()->getPosition();
-            nextBranch->move(posEnd, posStart);
-            cout << posEnd << endl;
+            nextBranch->move(newPos);
+
             branches.push_back(nextBranch);
             current = branches.back();
-            addBranchToMesh((posEnd+posStart), posStart,dir);
+            addBranchToMesh(newPos, parentPos, newDir);
         }
     }
 }
@@ -101,16 +103,16 @@ void ofxSpaceColonization::grow(){
         for (int i = 0; i<branches.size(); i++) {
             if (branches[i] != nullptr) {
                 if (branches[i]->getCount() > 0) {
-                    auto newDir = branches[i]->getDirection() / (float(branches[i]->getCount() + 1));
-                    auto normDir = glm::normalize(newDir);
-                    shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(normDir));
+                    glm::vec3 parentDir = branches[i]->getDirection();
+                    glm::vec3 parentPos = branches[i]->getPosition();
+                    glm::vec3 newDir = glm::normalize(parentDir / (float(branches[i]->getCount() + 1)));
+                    glm::vec3 newPos = parentPos + (newDir * branch_length);
 
+                    shared_ptr<ofxSpaceColonizationBranch> nextBranch(new ofxSpaceColonizationBranch(newDir));
                     nextBranch->setParentByIndex(i);
-                    glm::vec3 endPos = normDir * branch_length;
-                    glm::vec3 startPos = branches[i]->getPosition();
-                    cout << "generate" << endl;
-                    nextBranch->move(endPos,startPos);
-                    addBranchToMesh((endPos+startPos), startPos, newDir);
+                    nextBranch->move(newPos);
+
+                    addBranchToMesh(newPos, parentPos, newDir);
                     newBranches.push_back(nextBranch);
                 }
                 branches[i]->reset();
@@ -158,9 +160,9 @@ glm::vec3 ofxSpaceColonization::getParentBranchPosition(int _index) const {
 //TODO this method has to go out from this class, leave the alg
 // alone
 void ofxSpaceColonization::addBranchToMesh(glm::vec3 posEnd, glm::vec3 posStart,
-                                           glm::vec3 direction){
+                                           glm::vec3 endDirection){
     if (!use2d) {
-        auto branchMesh = ofxSpaceColonizationTu(posEnd, posStart, direction, this->mesh);
+        auto branchMesh = ofxSpaceColonizationTu(posEnd, posStart, endDirection, this->mesh);
     }
 }
 

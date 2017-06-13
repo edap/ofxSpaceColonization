@@ -13,7 +13,7 @@ public:
     void reset();
     void addToDirection(glm::vec3 _newDir);
     void incrementCounterBy(int _val);
-    void move(glm::vec3 _pos, glm::vec3 _parentPos);
+    void move(glm::vec3 _destination);
     void setParentByIndex(int parent_index);
 
 private:
