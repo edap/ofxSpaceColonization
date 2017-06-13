@@ -1,6 +1,6 @@
 #include "ofxSpaceColonizationTu.h"
 
-ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec3 endPos, glm::vec3 startPos, glm::vec3 dir, ofMesh& mesh){
+ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec3 startPos, glm::vec3 endPos, glm::vec3 dir, ofMesh& mesh){
     bool cap = false;
     float length = glm::distance(startPos, endPos);
     const int radius = 8;

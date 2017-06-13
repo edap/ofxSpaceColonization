@@ -3,7 +3,7 @@
 class ofxSpaceColonizationTu{
 
 public:
-    ofxSpaceColonizationTu(glm::vec3 end, glm::vec3 start, glm::vec3 dir, ofMesh& mesh);
+    ofxSpaceColonizationTu(glm::vec3 start, glm::vec3 end, glm::vec3 dir, ofMesh& mesh);
     ofMesh getMesh();
 
 private:
