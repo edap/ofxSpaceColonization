@@ -48,16 +48,22 @@ void ofxSpaceColonization::build(){
 }
 
 void ofxSpaceColonization::grow(){
+    cout << "size" << endl;
+    cout << leaves.size() << endl;
     if (!done_growing) {
-        //cout << branches.size() << endl;
+        //If no leaves left, we are done
+        if (leaves.size() == 0) {
+            done_growing = true;
+            return;
+        }
+        cout << branches.size() << endl;
         //process leaves
         for (int it=0;it<leaves.size();it++) {
             float record = 10000.0;
-
+            //Find the nearest branch for this leaf
             auto closestBranchIndex = -1;
             for (int i=0;i<branches.size();i++) {
                 auto distance = glm::distance(leaves[it].getPosition(), branches[i]->getPosition());
-                auto vPos = branches[i]->getPosition();
                 if (distance < min_dist) {
                     leaves[it].setReached(true);
                     closestBranchIndex = -1;
