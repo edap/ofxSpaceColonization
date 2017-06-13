@@ -73,7 +73,7 @@ ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec3 endPos, glm::vec3 start
         mesh.addTexCoord(tcoord);
     }
 
-    // Cylinder cap
+    // Cylinder cap, NOT USED YET
     if (cap) {
         int topMiddlePoint = mesh.getNumVertices();
         mesh.addVertex(endPos);

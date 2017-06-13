@@ -153,12 +153,13 @@ glm::vec3 ofxSpaceColonization::getParentBranchPosition(int _index) const {
 //    //TODO
 //}
 
+//TODO this method has to go out from this class, leave the alg
+// alone
 void ofxSpaceColonization::addBranchToMesh(glm::vec3 posEnd, glm::vec3 posStart,
                                            glm::vec3 direction){
     if (!use2d) {
         auto branchMesh = ofxSpaceColonizationTu(posEnd, posStart, direction, this->mesh);
     }
-    //TODO
 }
 
 void ofxSpaceColonization::draw3d(){
