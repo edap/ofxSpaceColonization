@@ -33,7 +33,7 @@ public:
 private:
     //template <class ofxSpaceColonizationGeom>
     //void addBranchToMesh(ofxSpaceColonizationGeom geom);
-    void addBranchToMesh(glm::vec3 posStart, glm::vec3 posEnd, glm::vec3 dir);
+    void addBranchToMesh(glm::vec3 posStart, glm::vec3 posEnd, glm::vec3 startDir, glm::vec3 endDir);
     vector<ofxSpaceColonizationLeaf> leaves;
     vector<shared_ptr<ofxSpaceColonizationBranch>> branches;
     int max_dist = 150;

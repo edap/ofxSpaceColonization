@@ -1,6 +1,7 @@
 #include "ofxSpaceColonizationTu.h"
 
-ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec3 startPos, glm::vec3 endPos, glm::vec3 dir, ofMesh& mesh){
+ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec3 startPos, glm::vec3 endPos, glm::vec3 startDir, glm::vec3 endDir, ofMesh& mesh){
+    auto dir = startDir;
     bool cap = false;
     float length = glm::distance(startPos, endPos);
     const int radius = 8;
@@ -46,6 +47,9 @@ ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec3 startPos, glm::vec3 end
         float x = radius * cosf(theta);
         float z = radius * sinf(theta);
         //cout << z << endl;
+
+        auto perp = glm::perp(startPos,dir);
+        cout << perp << endl;
         glm::vec3 offset = glm::vec3(x, startPos.y, z);
         glm::vec3 circleBottom = startPos + offset;
         glm::vec3 direction = glm::normalize(circleBottom);
