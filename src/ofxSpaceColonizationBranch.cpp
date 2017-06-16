@@ -18,6 +18,10 @@ glm::vec3 ofxSpaceColonizationBranch::getDirection() const {
     return this->direction;
 };
 
+glm::vec3 ofxSpaceColonizationBranch::getOldDirection() const {
+    return this->originalDirection;
+};
+
 int ofxSpaceColonizationBranch::getCount() const {
     return this->count;
 };

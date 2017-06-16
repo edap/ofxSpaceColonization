@@ -9,6 +9,7 @@ public:
     int getCount() const;
     glm::vec3 getPosition() const;
     glm::vec3 getDirection() const;
+    glm::vec3 getOldDirection() const;
 
     void reset();
     void addToDirection(glm::vec3 _newDir);

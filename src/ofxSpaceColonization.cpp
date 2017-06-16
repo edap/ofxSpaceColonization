@@ -104,6 +104,7 @@ void ofxSpaceColonization::grow(){
             if (branches[i] != nullptr) {
                 if (branches[i]->getCount() > 0) {
                     glm::vec3 parentDir = branches[i]->getDirection();
+                    glm::vec3 oldDir = branches[i]->getOldDirection();
                     glm::vec3 parentPos = branches[i]->getPosition();
                     glm::vec3 newDir = glm::normalize(parentDir / (float(branches[i]->getCount() + 1)));
                     glm::vec3 newPos = parentPos + (newDir * branch_length);
@@ -112,7 +113,7 @@ void ofxSpaceColonization::grow(){
                     nextBranch->setParentByIndex(i);
                     nextBranch->move(newPos);
 
-                    addBranchToMesh(glm::vec4(parentPos,1.0), glm::vec4(newPos,1.0), parentDir,newDir);
+                    addBranchToMesh(glm::vec4(parentPos,1.0), glm::vec4(newPos,1.0), oldDir,newDir);
                     newBranches.push_back(nextBranch);
                 }
                 branches[i]->reset();

@@ -3,9 +3,9 @@
 ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec4 startPos, glm::vec4 endPos, glm::vec3 startDir, glm::vec3 endDir, ofMesh& mesh){
     bool cap = false;
     float length = glm::distance(startPos, endPos);
-    int resolution = 6;
-    const int radius = 8;
-    const int scaledRadius = 8;//for now, do not scale the branches;
+    int resolution = 8;
+    const int radius = 3;
+    const int scaledRadius = 3;//for now, do not scale the branches;
 
     // these variables are used to do not stretch the texture
     float circumferenceBottom = radius * 3.1415926f;
