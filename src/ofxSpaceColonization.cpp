@@ -44,7 +44,7 @@ void ofxSpaceColonization::build(){
 
             branches.push_back(nextBranch);
             current = branches.back();
-            addBranchToMesh(parentPos, newPos, parentDir, newDir);
+            addBranchToMesh(glm::vec4(parentPos,1.0), glm::vec4(newPos,1.0), parentDir, newDir);
         }
     }
 }
@@ -112,7 +112,7 @@ void ofxSpaceColonization::grow(){
                     nextBranch->setParentByIndex(i);
                     nextBranch->move(newPos);
 
-                    addBranchToMesh(parentPos, newPos, parentDir,newDir);
+                    addBranchToMesh(glm::vec4(parentPos,1.0), glm::vec4(newPos,1.0), parentDir,newDir);
                     newBranches.push_back(nextBranch);
                 }
                 branches[i]->reset();
@@ -159,7 +159,7 @@ glm::vec3 ofxSpaceColonization::getParentBranchPosition(int _index) const {
 
 //TODO this method has to go out from this class, leave the alg
 // alone
-void ofxSpaceColonization::addBranchToMesh(glm::vec3 posStart, glm::vec3 posEnd,
+void ofxSpaceColonization::addBranchToMesh(glm::vec4 posStart, glm::vec4 posEnd,
                                            glm::vec3 startDir, glm::vec3 endDir){
     if (!use2d) {
         auto branchMesh = ofxSpaceColonizationTu(posStart, posEnd, startDir, endDir, this->mesh);

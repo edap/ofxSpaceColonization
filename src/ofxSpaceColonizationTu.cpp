@@ -1,6 +1,6 @@
 #include "ofxSpaceColonizationTu.h"
 
-ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec3 startPos, glm::vec3 endPos, glm::vec3 startDir, glm::vec3 endDir, ofMesh& mesh){
+ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec4 startPos, glm::vec4 endPos, glm::vec3 startDir, glm::vec3 endDir, ofMesh& mesh){
     bool cap = false;
     float length = glm::distance(startPos, endPos);
     int resolution = 6;
