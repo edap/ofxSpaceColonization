@@ -63,7 +63,7 @@ ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec4 startPos, glm::vec4 end
 
         glm::vec2 tcoord;
         tcoord.x = ofMap(i, 0.f, resolution, 0.f, xWrapLimit);
-        glm::vec3 normal = glm::normalize(glm::vec3(circleBottom) - startPos);
+        glm::vec3 normal = glm::normalize(glm::vec3(circleTop) - endPos);
         // bottom
         tcoord.y = 0;
         mesh.addVertex(glm::vec3(circleBottom));
