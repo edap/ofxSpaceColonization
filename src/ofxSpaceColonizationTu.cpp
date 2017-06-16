@@ -22,10 +22,9 @@ ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec4 startPos, glm::vec4 end
     glm::mat4 tranMatBottom = glm::translate(glm::vec3(startPos));
 
     //top
-    glm::quat quatTop = rotationBetweenVectors(idealUpAxis, endDir);
+    glm::quat quatTop = rotationBetweenVectors(startDir, endDir);
     glm::mat4x4 rotMatTop = glm::toMat4(quatTop);
-    glm::mat4 tranMatTop = glm::translate(glm::vec3(endPos));
-
+    glm::mat4 tranMatTop = glm::translate(glm::vec3(endPos - startPos));
 
     // Cylinder body
     int first = mesh.getNumVertices();
@@ -58,7 +57,7 @@ ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec4 startPos, glm::vec4 end
         float z = radius * sinf(theta);
         glm::vec4 circle = glm::vec4(x, 0.0f, z, 1.0f); // it is a vec4 because
         glm::vec4 circleBottom = tranMatBottom * rotMatBottom * circle;
-        glm::vec4 circleTop = tranMatTop * rotMatTop * circle;
+        glm::vec4 circleTop = tranMatBottom * tranMatTop * rotMatTop *rotMatBottom * circle;
 
 
         glm::vec2 tcoord;

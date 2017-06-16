@@ -10,6 +10,6 @@ public:
 private:
     glm::vec3 pos;
     ofMesh mesh;
-    int resolution = 6;
+    int resolution = 32;
     int textureRepeat = 1;
 };
