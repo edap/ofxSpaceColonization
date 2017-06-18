@@ -22,9 +22,18 @@ ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec4 startPos, glm::vec4 end
     glm::mat4 tranMatBottom = glm::translate(glm::vec3(startPos));
 
     //top
-    glm::quat quatTop = rotationBetweenVectors(startDir, endDir);
+    // OLD
+    // glm::quat quatTop = rotationBetweenVectors(startDir, endDir);
+    glm::quat quatTop = rotationBetweenVectors(idealUpAxis, endDir);
     glm::mat4x4 rotMatTop = glm::toMat4(quatTop);
-    glm::mat4 tranMatTop = glm::translate(glm::vec3(endPos - startPos));
+    // OLD
+    // glm::mat4 tranMatTop = glm::translate(glm::vec3(endPos - startPos));
+    glm::mat4 tranMatTop = glm::translate(glm::vec3(endPos));
+
+    //COmbined
+    glm::quat quatTop2 = rotationBetweenVectors(startDir, endDir);
+    glm::quat quatTopCombined = quatTop2 * quatBottom;
+    glm::mat4 rotMatCombined = glm::toMat4(quatTopCombined);
 
     // Cylinder body
     int first = mesh.getNumVertices();
@@ -57,8 +66,9 @@ ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec4 startPos, glm::vec4 end
         float z = radius * sinf(theta);
         glm::vec4 circle = glm::vec4(x, 0.0f, z, 1.0f); // it is a vec4 because
         glm::vec4 circleBottom = tranMatBottom * rotMatBottom * circle;
-        glm::vec4 circleTop = tranMatBottom * tranMatTop * rotMatTop *rotMatBottom * circle;
-
+        //OLDglm::vec4 circleTop = tranMatBottom * tranMatTop * rotMatTop *rotMatBottom * circle;
+        //glm::vec4 circleTop = tranMatTop * rotMatTop * circle;
+        glm::vec4 circleTop = tranMatTop * rotMatCombined * circle;
 
         glm::vec2 tcoord;
         tcoord.x = ofMap(i, 0.f, resolution, 0.f, xWrapLimit);
@@ -116,6 +126,7 @@ ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec4 startPos, glm::vec4 end
 //    }
 
 }
+
 
 glm::quat ofxSpaceColonizationTu::rotationBetweenVectors(glm::vec3 start, glm::vec3 dest){
     start = normalize(start);

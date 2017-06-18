@@ -1,10 +1,9 @@
 #include "ofMain.h"
 
-class ofxSpaceColonizationBranch{
+class ofxSpaceColonizationBranch {
 
 public:
     ofxSpaceColonizationBranch(glm::vec3 _direction);
-    
     int getIndexParent() const;
     int getCount() const;
     glm::vec3 getPosition() const;
