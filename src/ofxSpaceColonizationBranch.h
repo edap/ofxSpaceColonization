@@ -7,13 +7,13 @@ class ofxSpaceColonizationBranch : public ofxBranch{
 public:
     ofxSpaceColonizationBranch(glm::vec4 startPos, glm::vec4 endPos, glm::quat orientation, glm::vec3 startDir)
     : ofxBranch(startPos, endPos, orientation, startDir){
-        this->modifiedDirection = getEndDirection();
+        this->nextBranchDirection = getEndDirection();
         this->originalDirection = getEndDirection();
     };
     
     int getIndexParent() const;
     int getCount() const;
-    glm::vec3 getModifiedDirection() const; //this has to be used just when calculating the new position
+    glm::vec3 getNextBranchDirectionDirection() const; //this has to be used just when calculating the new position
     glm::vec3 getOldDirection() const;
 
     void reset();
@@ -23,7 +23,7 @@ public:
 
 private:
     int count = 0;
-    glm::vec3 modifiedDirection;
+    glm::vec3 nextBranchDirection;
     glm::vec3 originalDirection;
     int indexParent = 0;
 };

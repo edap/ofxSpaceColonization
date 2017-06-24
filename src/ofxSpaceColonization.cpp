@@ -110,8 +110,8 @@ void ofxSpaceColonization::grow(){
                     glm::vec3 parentPos = glm::vec3(branches[i]->getEndPos());
                     glm::quat parentOrientation = branches[i]->getEndOrientation();
                     //glm::quat parentOrientation = branches[i]->getModifiedOrientation();
-                    glm::vec3 modifiedDir = branches[i]->getModifiedDirection();
-                    glm::vec3 newDir = glm::normalize(modifiedDir / (float(branches[i]->getCount() + 1)));
+                    glm::vec3 nextBranchDir = branches[i]->getNextBranchDirectionDirection();
+                    glm::vec3 newDir = glm::normalize(nextBranchDir / (float(branches[i]->getCount() + 1)));
                     glm::vec3 newPos = parentPos + (newDir * branch_length);
 
                     shared_ptr<ofxSpaceColonizationBranch> nextBranch(
