@@ -9,8 +9,8 @@
 #include "ofxSpaceColonizationTube.h"
 static const ofxSpaceColonizationTubeOptions defaultOptions = {
     false,
-    5.0,
-    5.0,
+    3.0,
+    3.0,
     16,
     1
 };

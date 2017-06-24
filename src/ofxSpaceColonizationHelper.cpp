@@ -22,5 +22,10 @@ const vector<glm::vec3> ofxSpaceColonizationHelper::genRandomLeavesPositions(
         }
 
     }
+//    glm::vec3 pos = glm::vec3(-30,_trunk_length+120, 0);
+//    glm::vec3 pos2 = glm::vec3(80,_trunk_length+120, 0);
+//    tmp_particles.push_back(pos);
+//    tmp_particles.push_back(pos2);
+
     return tmp_particles;
 }

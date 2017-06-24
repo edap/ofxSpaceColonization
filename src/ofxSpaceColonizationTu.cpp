@@ -14,6 +14,8 @@ ofxSpaceColonizationTu::ofxSpaceColonizationTu(glm::vec4 startPos, glm::vec4 end
     float xWrapLimit = circumferenceBottom/(length/textureRepeat);
     float wrapLimitCap = ratioCap * textureRepeat;
 
+    //glm::quat rot1 = rotationBetweenVectors(vec3(0.0f, 1.0f, 0.0f), startDir);
+
     auto idealUpAxis = glm::vec3(0.0f,1.0f,0.0f);
 
     //bottom

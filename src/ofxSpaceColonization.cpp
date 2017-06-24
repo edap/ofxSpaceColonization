@@ -43,12 +43,12 @@ void ofxSpaceColonization::build(){
             glm::vec3 newPos = parentPos + (newDir * branch_length);
 
             shared_ptr<ofxSpaceColonizationBranch> nextBranch(
-                new ofxSpaceColonizationBranch(glm::vec4(parentPos, 1.0), glm::vec4(newPos, 1.0), parentOrientation, newDir));
+                new ofxSpaceColonizationBranch(glm::vec4(parentPos, 1.0), glm::vec4(newPos, 1.0), parentOrientation, parentDir));
             int lastInsertedBranchId = branches.size() -1;
             nextBranch->setParentByIndex(lastInsertedBranchId);
             branches.push_back(nextBranch);
             current = branches.back();
-            addBranchToMesh(glm::vec4(parentPos,1.0), glm::vec4(newPos,1.0), parentDir, newDir);
+            addBranchToMesh2(nextBranch);
         }
     }
 }
@@ -105,15 +105,17 @@ void ofxSpaceColonization::grow(){
         for (int i = 0; i<branches.size(); i++) {
             if (branches[i] != nullptr) {
                 if (branches[i]->getCount() > 0) {
-                    glm::vec3 parentDir = branches[i]->getModifiedDirection();
+                    //glm::vec3 parentDir = branches[i]->getModifiedDirection();
                     glm::vec3 oldDir = branches[i]->getOldDirection();
                     glm::vec3 parentPos = glm::vec3(branches[i]->getEndPos());
                     glm::quat parentOrientation = branches[i]->getEndOrientation();
-                    glm::vec3 newDir = glm::normalize(parentDir / (float(branches[i]->getCount() + 1)));
+                    //glm::quat parentOrientation = branches[i]->getModifiedOrientation();
+                    glm::vec3 modifiedDir = branches[i]->getModifiedDirection();
+                    glm::vec3 newDir = glm::normalize(modifiedDir / (float(branches[i]->getCount() + 1)));
                     glm::vec3 newPos = parentPos + (newDir * branch_length);
 
                     shared_ptr<ofxSpaceColonizationBranch> nextBranch(
-                                                                      new ofxSpaceColonizationBranch(glm::vec4(parentPos, 1.0), glm::vec4(newPos, 1.0), parentOrientation, newDir));
+                                                                      new ofxSpaceColonizationBranch(glm::vec4(parentPos, 1.0), glm::vec4(newPos, 1.0), parentOrientation, oldDir));
                     nextBranch->setParentByIndex(i);
                     addBranchToMesh2(nextBranch);
                     newBranches.push_back(nextBranch);
@@ -147,18 +149,6 @@ void ofxSpaceColonization::setTrunkLength(int _length){
     trunk_length = _length;
 };
 
-glm::vec3 ofxSpaceColonization::getBranchPosition(int _index) const {
-    return this->branches[_index]->getPosition();
-};
-
-glm::vec3 ofxSpaceColonization::getParentBranchPosition(int _index) const {
-    auto parentIndex = this->branches[_index]->getIndexParent();
-    return this->branches[parentIndex]->getPosition();
-};
-
-//template <class ofxSpaceColonizationGeom>void ofxSpaceColonization::addBranchToMesh(ofxSpaceColonizationGeom geom){
-//    //TODO
-//}
 
 //TODO this method has to go out from this class, leave the alg
 // alone
@@ -167,6 +157,10 @@ void ofxSpaceColonization::addBranchToMesh(glm::vec4 posStart, glm::vec4 posEnd,
     if (!use2d) {
         auto branchMesh = ofxSpaceColonizationTu(posStart, posEnd, startDir, endDir, this->mesh);
     }
+}
+
+void ofxSpaceColonization::addBranchToMesh2(shared_ptr<ofxSpaceColonizationBranch> branch){
+    ofxSpaceColonizationTube::putIntoMesh(branch, this->mesh);
 }
 
 void ofxSpaceColonization::draw3d(){

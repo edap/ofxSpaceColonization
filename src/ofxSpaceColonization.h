@@ -48,7 +48,7 @@ private:
     glm::vec3 root_direction = glm::vec3(0.0f, 1.0f, 0.0f);
     vector<glm::vec3> leaves_positions;
     bool use2d = false;
-    int branch_length = 5;
+    int branch_length = 15;
     bool done_growing = false;
     ofMesh         mesh;
 };
