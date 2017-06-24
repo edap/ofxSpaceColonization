@@ -1,21 +1,7 @@
 #include "ofxSpaceColonizationBranch.h"
 
-
-ofxSpaceColonizationBranch::ofxSpaceColonizationBranch(const glm::vec3 _direction){
-    this->direction = _direction;
-    this->originalDirection = _direction;
-}
-
-void ofxSpaceColonizationBranch::move(glm::vec3 dest){
-    this->position = dest;
-}
-
-glm::vec3 ofxSpaceColonizationBranch::getPosition() const {
-    return this->position;
-}
-
-glm::vec3 ofxSpaceColonizationBranch::getDirection() const {
-    return this->direction;
+glm::vec3 ofxSpaceColonizationBranch::getModifiedDirection() const {
+    return this->modifiedDirection;
 };
 
 glm::vec3 ofxSpaceColonizationBranch::getOldDirection() const {
@@ -27,7 +13,7 @@ int ofxSpaceColonizationBranch::getCount() const {
 };
 
 void ofxSpaceColonizationBranch::addToDirection(glm::vec3 _newDir){
-    this->direction = this->direction + _newDir;
+    this->modifiedDirection = this->modifiedDirection + _newDir;
 };
 
 void ofxSpaceColonizationBranch::incrementCounterBy(int _val){
@@ -43,7 +29,7 @@ void ofxSpaceColonizationBranch::setParentByIndex(int parent_index) {
 };
 
 void ofxSpaceColonizationBranch::reset(){
-    this->direction = this->originalDirection;
+    this->modifiedDirection = this->originalDirection;
     this->count = 0;
 }
 

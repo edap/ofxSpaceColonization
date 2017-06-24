@@ -5,6 +5,10 @@
 #include "ofxSpaceColonizationLeaf.h"
 #include "ofxSpaceColonizationHelper.h"
 #include "ofxSpaceColonizationTu.h"
+#include "ofxSpaceColonizationTube.h"
+
+//#include "ofxBranch.h"
+//#include "ofxBranchCylinder.h"
 
 class ofxSpaceColonization {
 public:
@@ -34,12 +38,13 @@ private:
     //template <class ofxSpaceColonizationGeom>
     //void addBranchToMesh(ofxSpaceColonizationGeom geom);
     void addBranchToMesh(glm::vec4 posStart, glm::vec4 posEnd, glm::vec3 startDir, glm::vec3 endDir);
+    void addBranchToMesh2(shared_ptr<ofxSpaceColonizationBranch> branch);
     vector<ofxSpaceColonizationLeaf> leaves;
     vector<shared_ptr<ofxSpaceColonizationBranch>> branches;
     int max_dist = 150;
     int min_dist = 10;
     int trunk_length = 150;
-    glm::vec3 root_position = glm::vec3(0.0f,0.0f,0.0f);
+    glm::vec4 root_position = glm::vec4(0.0f,0.0f,0.0f, 1.0f);
     glm::vec3 root_direction = glm::vec3(0.0f, 1.0f, 0.0f);
     vector<glm::vec3> leaves_positions;
     bool use2d = false;

@@ -1,14 +1,22 @@
-#include "ofMain.h"
-//NOT USED YET
-template <class ofxSpaceColonizationGeom> class ofxSpaceColonizationTube {
 
+#pragma once
+
+#include "ofMain.h"
+#include "ofxSpaceColonizationBranch.h"
+
+struct ofxSpaceColonizationTubeOptions{
+    bool cap;
+    float radiusBottom;
+    float radiusTop;
+    int resolution;
+    int textureRepeat;
+};
+
+class ofxSpaceColonizationTube{
 public:
-    ofxSpaceColonizationTube(glm::vec3 end, glm::vec3 start){
-        
-    };
-    ofMesh getMesh();
+    static void putIntoMesh(shared_ptr<ofxSpaceColonizationBranch> branch, ofMesh& mesh);
+    static void putIntoMesh(shared_ptr<ofxSpaceColonizationBranch> branch, ofMesh& mesh, ofxSpaceColonizationTubeOptions options);
 
 private:
-    glm::vec3 pos;
-    ofMesh mesh;
+    static void add(shared_ptr<ofxSpaceColonizationBranch> branch, ofMesh& mesh, ofxSpaceColonizationTubeOptions options);
 };
