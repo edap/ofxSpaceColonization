@@ -1,6 +1,25 @@
 #include "ofxSpaceColonization.h"
+
+static const ofxSpaceColonizationOptions defaultSpaceColOptions = {
+    false, // cap
+    5.0,   // radius
+    16,    // resolution
+    1,     // textureRepeat
+    1.0    // radiusScale
+};
+
+
 ofxSpaceColonization::ofxSpaceColonization(){
+    setup(defaultSpaceColOptions);
 }
+
+ofxSpaceColonization::ofxSpaceColonization(ofxSpaceColonizationOptions _opt){
+    setup(_opt);
+}
+
+void ofxSpaceColonization::setup(ofxSpaceColonizationOptions _opt){
+    this->options = _opt;
+};
 
 void ofxSpaceColonization::build(){
     if (use2d) {
