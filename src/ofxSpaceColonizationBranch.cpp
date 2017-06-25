@@ -4,15 +4,11 @@ glm::vec3 ofxSpaceColonizationBranch::getNextBranchDirectionDirection() const {
     return this->nextBranchDirection;
 };
 
-glm::vec3 ofxSpaceColonizationBranch::getOldDirection() const {
-    return this->originalDirection;
-};
-
 int ofxSpaceColonizationBranch::getCount() const {
     return this->count;
 };
 
-void ofxSpaceColonizationBranch::addToDirection(glm::vec3 _newDir){
+void ofxSpaceColonizationBranch::correctNextBranchDirection(glm::vec3 _newDir){
     this->nextBranchDirection = this->nextBranchDirection + _newDir;
 };
 
@@ -29,7 +25,7 @@ void ofxSpaceColonizationBranch::setParentByIndex(int parent_index) {
 };
 
 void ofxSpaceColonizationBranch::reset(){
-    this->nextBranchDirection = this->originalDirection;
+    this->nextBranchDirection = getEndDirection();
     this->count = 0;
 }
 
