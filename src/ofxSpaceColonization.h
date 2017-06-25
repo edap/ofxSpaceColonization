@@ -4,7 +4,6 @@
 #include "ofxSpaceColonizationBranch.h"
 #include "ofxSpaceColonizationLeaf.h"
 #include "ofxSpaceColonizationHelper.h"
-#include "ofxSpaceColonizationTu.h"
 #include "ofxSpaceColonizationTube.h"
 
 //#include "ofxBranch.h"
