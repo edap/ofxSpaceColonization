@@ -4,10 +4,7 @@
 #include "ofxSpaceColonizationBranch.h"
 #include "ofxSpaceColonizationLeaf.h"
 #include "ofxSpaceColonizationHelper.h"
-#include "ofxSpaceColonizationTube.h"
-
-//#include "ofxBranch.h"
-//#include "ofxBranchCylinder.h"
+#include "ofxBranchCylinder.h"
 
 class ofxSpaceColonization {
 public:
@@ -16,8 +13,6 @@ public:
     void grow();
     void drawWireframe();
     void draw3d();
-    //template <class ofxSpaceColonizationGeom>
-    //void grow2(ofxSpaceColonizationGeom geom);
 
     vector<ofxSpaceColonizationLeaf> getLeaves() const;
     int getSizeBranches() const;
@@ -34,8 +29,6 @@ public:
     void set2d(bool use2d);
 
 private:
-    //template <class ofxSpaceColonizationGeom>
-    //void addBranchToMesh(ofxSpaceColonizationGeom geom);
     void addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch);
     vector<ofxSpaceColonizationLeaf> leaves;
     vector<shared_ptr<ofxSpaceColonizationBranch>> branches;

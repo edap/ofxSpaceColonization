@@ -1,5 +1,4 @@
 #include "ofxSpaceColonization.h"
-// http://www.jgallant.com/procedurally-generating-trees-with-space-colonization-algorithm-in-xna/
 ofxSpaceColonization::ofxSpaceColonization(){
 }
 
@@ -145,7 +144,7 @@ void ofxSpaceColonization::setTrunkLength(int _length){
 };
 
 void ofxSpaceColonization::addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch){
-    ofxSpaceColonizationTube::putIntoMesh(branch, this->mesh);
+    ofxBranchCylinder::putIntoMesh(branch, this->mesh);
 }
 
 void ofxSpaceColonization::draw3d(){
