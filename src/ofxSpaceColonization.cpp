@@ -79,7 +79,13 @@ void ofxSpaceColonization::build(){
             branches.push_back(nextBranch);
             cout << nextBranch << endl;
             current = branches.back();
-            addBranchToMesh(nextBranch);
+            auto opt = ofxBranchCylinderOptions({
+                options.cap,
+                options.radius,
+                options.radius,
+                options.resolution,
+                options.textureRepeat });
+            addBranchToMesh(nextBranch,opt);
         }
     }
 }
@@ -144,7 +150,13 @@ void ofxSpaceColonization::grow(){
                     shared_ptr<ofxSpaceColonizationBranch> nextBranch(
                                                                       new ofxSpaceColonizationBranch(glm::vec4(parentPos, 1.0), glm::vec4(newPos, 1.0), parentOrientation, parentDir));
                     nextBranch->setParentByIndex(i);
-                    addBranchToMesh(nextBranch);
+                    auto opt = ofxBranchCylinderOptions({
+                        options.cap,
+                        options.radius,
+                        options.radius,
+                        options.resolution,
+                        options.textureRepeat });
+                    addBranchToMesh(nextBranch,opt);
                     newBranches.push_back(nextBranch);
                 }
                 branches[i]->reset();
@@ -155,8 +167,8 @@ void ofxSpaceColonization::grow(){
 
 }
 
-void ofxSpaceColonization::addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch){
-    ofxBranchCylinder::putIntoMesh(branch, this->mesh);
+void ofxSpaceColonization::addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch, ofxBranchCylinderOptions opt){
+    ofxBranchCylinder::putIntoMesh(branch, this->mesh, opt);
 }
 
 void ofxSpaceColonization::draw3d(){

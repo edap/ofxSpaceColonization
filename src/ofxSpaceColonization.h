@@ -42,7 +42,7 @@ public:
     ofxSpaceColonizationOptions options;
 
 private:
-    void addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch);
+    void addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch,ofxBranchCylinderOptions opt);
     vector<ofxSpaceColonizationLeaf> leaves;
     vector<shared_ptr<ofxSpaceColonizationBranch>> branches;
     vector<glm::vec3> leaves_positions;
