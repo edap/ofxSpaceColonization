@@ -22,14 +22,19 @@ struct ofxSpaceColonizationOptions{
     float radiusScale;
 };
 
-class ofxSpaceColonization {
+class ofxSpaceColonization : public of3dPrimitive {
 public:
 	ofxSpaceColonization();
     ofxSpaceColonization(ofxSpaceColonizationOptions opt);
     void build();
     void grow();
+    //these to need to be removed as soon as 3dprimitive is here
     void drawWireframe();
     void draw3d();
+
+    void clear();
+    void clearMesh();
+    void rebuildMesh();
 
     vector<ofxSpaceColonizationLeaf> getLeaves() const;
     int getSizeBranches() const;

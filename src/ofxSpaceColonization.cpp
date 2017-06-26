@@ -187,3 +187,16 @@ int ofxSpaceColonization::getSizeBranches() const{
     return this->branches.size();
 }
 
+void ofxSpaceColonization::clear(){
+    leaves.clear();
+    branches.clear();
+    leaves_positions.clear();
+    clearMesh();
+    branches.clear();
+};
+
+void ofxSpaceColonization::clearMesh(){
+    mesh.clear();
+    getMesh().clear();
+};
+
