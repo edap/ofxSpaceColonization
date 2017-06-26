@@ -25,6 +25,7 @@ ofxSpaceColonization::ofxSpaceColonization(ofxSpaceColonizationOptions _opt){
 }
 
 void ofxSpaceColonization::setup(ofxSpaceColonizationOptions _opt){
+    //this->mesh = getMesh();
     this->options = _opt;
 };
 
@@ -168,15 +169,7 @@ void ofxSpaceColonization::grow(){
 }
 
 void ofxSpaceColonization::addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch, ofxBranchCylinderOptions opt){
-    ofxBranchCylinder::putIntoMesh(branch, this->mesh, opt);
-}
-
-void ofxSpaceColonization::draw3d(){
-    this->mesh.draw();
-}
-
-void ofxSpaceColonization::drawWireframe(){
-    this->mesh.drawWireframe();
+    ofxBranchCylinder::putIntoMesh(branch, this->getMesh(), opt);
 }
 
 vector<ofxSpaceColonizationLeaf> ofxSpaceColonization::getLeaves() const{
@@ -196,7 +189,6 @@ void ofxSpaceColonization::clear(){
 };
 
 void ofxSpaceColonization::clearMesh(){
-    mesh.clear();
     getMesh().clear();
 };
 
