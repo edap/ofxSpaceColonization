@@ -1,13 +1,20 @@
 #include "ofxSpaceColonization.h"
 
 static const ofxSpaceColonizationOptions defaultSpaceColOptions = {
-    false, // cap
-    5.0,   // radius
-    16,    // resolution
-    1,     // textureRepeat
-    1.0    // radiusScale
+    150,                             // max_dist
+    10,                              // min_dist
+    150,                             // trunk_length
+    glm::vec4(0.0f,0.0f,0.0f, 1.0f), // rootPosition
+    glm::vec3(0.0f, 1.0f, 0.0f),     // rootDirection
+    false,                           // use2d
+    7,                               // branchLength
+    false,                           // done growing (is it still used? check)
+    false,                           // cap
+    2.0,                             // radius;
+    16,                              // resolution;
+    1,                               // textureRepeat;
+    1.0                              // radiusScale;
 };
-
 
 ofxSpaceColonization::ofxSpaceColonization(){
     setup(defaultSpaceColOptions);
@@ -22,18 +29,22 @@ void ofxSpaceColonization::setup(ofxSpaceColonizationOptions _opt){
 };
 
 void ofxSpaceColonization::build(){
-    if (use2d) {
-        root_position = glm::vec4(ofGetWidth()/2, ofGetHeight(), 0, 1.0);
-        root_direction = glm::vec3(0.0f, -1.0f, 0.0f);
+    if (options.use2d) {
+        //TODO set this variable in the opt struct of the 2D example and remove this condition
+        options.rootPosition = glm::vec4(ofGetWidth()/2, ofGetHeight(), 0, 1.0);
+        options.rootDirection = glm::vec3(0.0f, -1.0f, 0.0f);
     }
     if (leaves_positions.empty()) {
-        leaves_positions = ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, use2d, trunk_length);
+        leaves_positions =
+            ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, options.use2d, options.trunk_length);
     }
+
+
 
 
     glm::vec4 endPoint = glm::vec4(0.0f,1.0f,0.0f, 1.0);
     glm::quat orientation;
-    shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(root_position, endPoint, orientation, glm::vec3(0.0f, 1.0f, 0.0f)));
+    shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(options.rootPosition, endPoint, orientation, glm::vec3(0.0f, 1.0f, 0.0f)));
     branches.push_back(root);
 
 
@@ -44,11 +55,12 @@ void ofxSpaceColonization::build(){
     auto current = root;
     bool found = false;
     // we build the trunk,adding a branch after another, until we do not reach the foliage
+
     while (!found) {
         glm::vec3 cur = glm::vec3(current->getEndPos());
         for (auto l:leaves) {
             float distance = glm::distance(cur, l.getPosition());
-            if (distance < max_dist) {
+            if (distance < options.max_dist) {
                 found = true;
             }
         }
@@ -58,13 +70,14 @@ void ofxSpaceColonization::build(){
             glm::vec3 parentPos = glm::vec3(branches.back()->getEndPos());
             glm::quat parentOrientation = branches.back()->getEndOrientation();
             glm::vec3 newDir = parentDir;
-            glm::vec3 newPos = parentPos + (newDir * branch_length);
+            glm::vec3 newPos = parentPos + (newDir * options.branchLength);
 
             shared_ptr<ofxSpaceColonizationBranch> nextBranch(
                 new ofxSpaceColonizationBranch(glm::vec4(parentPos, 1.0), glm::vec4(newPos, 1.0), parentOrientation, parentDir));
             int lastInsertedBranchId = branches.size() -1;
             nextBranch->setParentByIndex(lastInsertedBranchId);
             branches.push_back(nextBranch);
+            cout << nextBranch << endl;
             current = branches.back();
             addBranchToMesh(nextBranch);
         }
@@ -73,10 +86,10 @@ void ofxSpaceColonization::build(){
 
 void ofxSpaceColonization::grow(){
     float record = -1;
-    if (!done_growing) {
+    if (!options.doneGrowing) {
         //If no leaves left, we are done
         if (leaves.size() == 0) {
-            done_growing = true;
+            options.doneGrowing = true;
             return;
         }
         //process leaves
@@ -87,11 +100,11 @@ void ofxSpaceColonization::grow(){
             for (int i=0;i<branches.size();i++) {
                 auto distance = glm::distance(leaves[it].getPosition(),
                                               glm::vec3(branches[i]->getEndPos()));
-                if (distance < min_dist) {
+                if (distance < options.min_dist) {
                     leaves[it].setReached(true);
                     closestBranchIndex = -1;
                     break;
-                } else if (distance > max_dist){
+                } else if (distance > options.max_dist){
                     //break;
                 } else if ((closestBranchIndex < 0) || (distance < record)){
                     closestBranchIndex = i;
@@ -126,7 +139,7 @@ void ofxSpaceColonization::grow(){
                     glm::quat parentOrientation = branches[i]->getEndOrientation();
                     glm::vec3 nextBranchDir = branches[i]->getNextBranchDirectionDirection();
                     glm::vec3 newDir = glm::normalize(nextBranchDir / (float(branches[i]->getCount() + 1)));
-                    glm::vec3 newPos = parentPos + (newDir * branch_length);
+                    glm::vec3 newPos = parentPos + (newDir * options.branchLength);
 
                     shared_ptr<ofxSpaceColonizationBranch> nextBranch(
                                                                       new ofxSpaceColonizationBranch(glm::vec4(parentPos, 1.0), glm::vec4(newPos, 1.0), parentOrientation, parentDir));
@@ -141,26 +154,6 @@ void ofxSpaceColonization::grow(){
     }
 
 }
-
-void ofxSpaceColonization::setMinDist(int _min_dist){
-    min_dist = _min_dist;
-};
-
-void ofxSpaceColonization::setMaxDist(int _max_dist){
-    max_dist = _max_dist;
-};
-
-void ofxSpaceColonization::set2d(bool _val){
-    this->use2d = _val;
-};
-
-void ofxSpaceColonization::setBranchLength(int _length){
-    branch_length = _length;
-};
-
-void ofxSpaceColonization::setTrunkLength(int _length){
-    trunk_length = _length;
-};
 
 void ofxSpaceColonization::addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch){
     ofxBranchCylinder::putIntoMesh(branch, this->mesh);
