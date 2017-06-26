@@ -89,8 +89,8 @@ void ofxSpaceColonization::build(){
                 radius_top,
                 options.resolution,
                 options.textureRepeat });
-            this->current_radius = radius_top;
             addBranchToMesh(nextBranch,opt);
+            this->current_radius = radius_top;
         }
     }
 }
