@@ -43,6 +43,7 @@ public:
     ofxSpaceColonizationOptions options;
 
 private:
+    float current_radius;
     void addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch,ofxBranchCylinderOptions opt);
     vector<ofxSpaceColonizationLeaf> leaves;
     vector<shared_ptr<ofxSpaceColonizationBranch>> branches;
