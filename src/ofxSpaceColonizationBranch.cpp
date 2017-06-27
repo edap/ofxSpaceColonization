@@ -16,14 +16,6 @@ void ofxSpaceColonizationBranch::incrementCounterBy(int _val){
     this->count = this->count + _val;
 };
 
-int ofxSpaceColonizationBranch::getIndexParent() const{
-    return this->indexParent;
-}
-
-void ofxSpaceColonizationBranch::setParentByIndex(int parent_index) {
-    this->indexParent = parent_index;
-};
-
 void ofxSpaceColonizationBranch::reset(){
     this->nextBranchDirection = getEndDirection();
     this->count = 0;

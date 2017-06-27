@@ -10,18 +10,15 @@ public:
         this->nextBranchDirection = getEndDirection();
     };
     
-    int getIndexParent() const;
     int getCount() const;
     glm::vec3 getNextBranchDirectionDirection() const; //this has to be used just when calculating the new position
 
     void reset();
     void correctNextBranchDirection(glm::vec3 _newDir);
     void incrementCounterBy(int _val);
-    void setParentByIndex(int parent_index);
 
 private:
     int count = 0;
     glm::vec3 nextBranchDirection;
-    int indexParent = 0;
 };
 
