@@ -195,14 +195,11 @@ int ofxSpaceColonization::getSizeBranches() const{
 }
 
 void ofxSpaceColonization::clear(){
+    options.doneGrowing = false;
+    setup(options);
     leaves.clear();
     branches.clear();
     leaves_positions.clear();
-    clearMesh();
-    branches.clear();
-};
-
-void ofxSpaceColonization::clearMesh(){
     getMesh().clear();
 };
 

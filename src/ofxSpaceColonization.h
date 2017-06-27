@@ -30,7 +30,6 @@ public:
     void build();
     void grow();
     void clear();
-    void clearMesh();
 
     vector<ofxSpaceColonizationLeaf> getLeaves() const;
     int getSizeBranches() const;
