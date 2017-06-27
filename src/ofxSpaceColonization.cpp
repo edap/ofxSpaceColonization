@@ -13,7 +13,7 @@ static const ofxSpaceColonizationOptions defaultSpaceColOptions = {
     2.0,                             // radius;
     16,                              // resolution;
     1,                               // textureRepeat;
-    0.9997                           // radiusScale;
+    0.9997                          // radiusScale;
 };
 
 ofxSpaceColonization::ofxSpaceColonization(){
@@ -27,7 +27,7 @@ ofxSpaceColonization::ofxSpaceColonization(ofxSpaceColonizationOptions _opt){
 void ofxSpaceColonization::setup(ofxSpaceColonizationOptions _opt){
     //this->mesh = getMesh();
     this->options = _opt;
-    this->current_radius = _opt.radius;
+    this->setPosition(glm::vec3(_opt.rootPosition));
 };
 
 void ofxSpaceColonization::build(){
@@ -41,12 +41,9 @@ void ofxSpaceColonization::build(){
             ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, options.use2d, options.trunk_length);
     }
 
-
-
-
     glm::vec4 endPoint = glm::vec4(0.0f,1.0f,0.0f, 1.0);
     glm::quat orientation;
-    shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(options.rootPosition, endPoint, orientation, glm::vec3(0.0f, 1.0f, 0.0f)));
+    shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(options.rootPosition, endPoint, orientation, glm::vec3(0.0f, 1.0f, 0.0f), options.radius));
     branches.push_back(root);
 
 
@@ -67,30 +64,35 @@ void ofxSpaceColonization::build(){
             }
         }
 
-        float radius_top;
         if (!found && !branches.empty()) {
             glm::vec3 parentDir = current->getEndDirection();
             glm::vec3 parentPos = glm::vec3(branches.back()->getEndPos());
+            float parentRadius = branches.back()->getEndRadius();
+            float newRadius = parentRadius * options.radiusScale;
             glm::quat parentOrientation = branches.back()->getEndOrientation();
             glm::vec3 newDir = parentDir;
             glm::vec3 newPos = parentPos + (newDir * options.branchLength);
 
             shared_ptr<ofxSpaceColonizationBranch> nextBranch(
-                new ofxSpaceColonizationBranch(glm::vec4(parentPos, 1.0), glm::vec4(newPos, 1.0), parentOrientation, parentDir));
+                new ofxSpaceColonizationBranch(
+                                               glm::vec4(parentPos, 1.0),
+                                               glm::vec4(newPos, 1.0),
+                                               parentOrientation,
+                                               parentDir,
+                                               newRadius)
+            );
             int lastInsertedBranchId = branches.size() -1;
             nextBranch->setParentByIndex(lastInsertedBranchId);
             branches.push_back(nextBranch);
             cout << nextBranch << endl;
             current = branches.back();
-            radius_top = this->current_radius * options.radiusScale;
             auto opt = ofxBranchCylinderOptions({
                 options.cap,
-                this->current_radius,
-                radius_top,
+                parentRadius,
+                newRadius,
                 options.resolution,
                 options.textureRepeat });
             addBranchToMesh(nextBranch,opt);
-            this->current_radius = radius_top;
         }
     }
 }
@@ -143,30 +145,34 @@ void ofxSpaceColonization::grow(){
 
         //Generate the new branches
         vector<shared_ptr<ofxSpaceColonizationBranch>> newBranches;
-        float radius_top;
         for (int i = 0; i<branches.size(); i++) {
             if (branches[i] != nullptr) {
                 if (branches[i]->getCount() > 0) {
                     glm::vec3 parentDir = branches[i]->getEndDirection();
                     glm::vec3 parentPos = glm::vec3(branches[i]->getEndPos());
+                    float parentRadius = branches[i]->getEndRadius();
+                    float newRadius = parentRadius * options.radiusScale;
                     glm::quat parentOrientation = branches[i]->getEndOrientation();
                     glm::vec3 nextBranchDir = branches[i]->getNextBranchDirectionDirection();
                     glm::vec3 newDir = glm::normalize(nextBranchDir / (float(branches[i]->getCount() + 1)));
                     glm::vec3 newPos = parentPos + (newDir * options.branchLength);
 
                     shared_ptr<ofxSpaceColonizationBranch> nextBranch(
-                                                                      new ofxSpaceColonizationBranch(glm::vec4(parentPos, 1.0), glm::vec4(newPos, 1.0), parentOrientation, parentDir));
+                        new ofxSpaceColonizationBranch(glm::vec4(parentPos, 1.0),
+                                                       glm::vec4(newPos, 1.0),
+                                                       parentOrientation,
+                                                       parentDir,
+                                                       newRadius)
+                    );
                     nextBranch->setParentByIndex(i);
-                    radius_top = this->current_radius * options.radiusScale;
                     auto opt = ofxBranchCylinderOptions({
                         options.cap,
-                        this->current_radius,
-                        radius_top,
+                        parentRadius,
+                        newRadius,
                         options.resolution,
                         options.textureRepeat });
                     addBranchToMesh(nextBranch,opt);
                     newBranches.push_back(nextBranch);
-                    this->current_radius = radius_top;
                 }
                 branches[i]->reset();
             }
@@ -197,7 +203,6 @@ void ofxSpaceColonization::clear(){
 };
 
 void ofxSpaceColonization::clearMesh(){
-    current_radius = options.radius;
     getMesh().clear();
 };
 

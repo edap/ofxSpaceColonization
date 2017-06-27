@@ -8,6 +8,11 @@ int ofxSpaceColonizationBranch::getCount() const {
     return this->count;
 };
 
+float ofxSpaceColonizationBranch::getEndRadius() const {
+    return this->endRadius;
+};
+
+
 void ofxSpaceColonizationBranch::correctNextBranchDirection(glm::vec3 _newDir){
     this->nextBranchDirection = this->nextBranchDirection + _newDir;
 };
