@@ -16,7 +16,7 @@ static const ofxSpaceColonizationOptions defaultSpaceColOptions = {
     2.0,                             // radius;
     16,                              // resolution;
     1,                               // textureRepeat;
-    0.9997                          // radiusScale;
+    0.9997                           // radiusScale;
 };
 
 ofxSpaceColonization::ofxSpaceColonization(){
@@ -91,7 +91,8 @@ void ofxSpaceColonization::build(){
                 newRadius,
                 options.resolution,
                 options.textureRepeat });
-            addBranchToMesh(nextBranch,opt);
+
+            ofxBranchCylinder::putIntoMesh(nextBranch, this->getMesh(), opt);
         }
     }
 }
@@ -185,7 +186,8 @@ void ofxSpaceColonization::grow(glm::vec3 wind){
                         newRadius,
                         options.resolution,
                         options.textureRepeat });
-                    addBranchToMesh(nextBranch,opt);
+
+                    ofxBranchCylinder::putIntoMesh(nextBranch, this->getMesh(), opt);
                     newBranches.push_back(nextBranch);
                 }
                 branches[i]->reset();
@@ -194,10 +196,6 @@ void ofxSpaceColonization::grow(glm::vec3 wind){
         branches.insert(branches.end(), newBranches.begin(), newBranches.end());
     }
 
-}
-
-void ofxSpaceColonization::addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch, ofxBranchCylinderOptions opt){
-    ofxBranchCylinder::putIntoMesh(branch, this->getMesh(), opt);
 }
 
 vector<ofxSpaceColonizationLeaf> ofxSpaceColonization::getLeaves() const{
