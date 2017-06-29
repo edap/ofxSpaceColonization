@@ -1,8 +1,10 @@
+// implementation of A. Runions, B. Lane & P. Prusinkiewicz / Modeling Trees with a Space Colonization Algorithm
+
 #include "ofxSpaceColonization.h"
 
 static const ofxSpaceColonizationOptions defaultSpaceColOptions = {
-    150,                             // max_dist
-    10,                              // min_dist
+    150,                             // max_dist,
+    10,                              // min_dist,
     150,                             // trunk_length
     glm::vec4(0.0f,0.0f,0.0f, 1.0f), // rootPosition
     glm::vec3(0.0f, 1.0f, 0.0f),     // rootDirection
@@ -22,6 +24,7 @@ ofxSpaceColonization::ofxSpaceColonization(){
 
 ofxSpaceColonization::ofxSpaceColonization(ofxSpaceColonizationOptions _opt){
     setup(_opt);
+
 }
 
 void ofxSpaceColonization::setup(ofxSpaceColonizationOptions _opt){
@@ -84,7 +87,6 @@ void ofxSpaceColonization::build(){
             int lastInsertedBranchId = branches.size() -1;
             nextBranch->setParentByIndex(lastInsertedBranchId);
             branches.push_back(nextBranch);
-            cout << nextBranch << endl;
             current = branches.back();
             auto opt = ofxBranchCylinderOptions({
                 options.cap,
@@ -114,6 +116,8 @@ void ofxSpaceColonization::grow(){
             for (int i=0;i<branches.size();i++) {
                 auto distance = glm::distance(leaves[it].getPosition(),
                                               glm::vec3(branches[i]->getEndPos()));
+                //options.min_dist is what in the paper it's called
+                // "kill distance"
                 if (distance < options.min_dist) {
                     leaves[it].setReached(true);
                     closestBranchIndex = -1;
