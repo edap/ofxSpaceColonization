@@ -71,6 +71,21 @@ void ofApp::setup(){
 I've created an addon that can be used to generate the points, it is called [ofxEnvelope](https://github.com/edap/ofxEnvelope) and you can see in the example `example-ofxenvelope` how to use it.
 
 
+### Wind
+
+The `grow` method takes a `glm::vec3` as optional parameter. This vector can be used to move the leaves, like [this](https://www.instagram.com/p/BV8B0FGDi1L/?taken-by=edapx)
+Example:
+
+```cpp
+void ofApp::update(){
+  float t = ofGetElapsedTimef();
+  float n = ofSignedNoise(t * windFreq) * windAmpl;
+  auto wind = glm::vec3(n,0.0,0.0); // a weird wind that only breezes on the x axis
+  tree.grow(wind);
+}
+```
+
+
 ### Examples
 
 *example-3d*

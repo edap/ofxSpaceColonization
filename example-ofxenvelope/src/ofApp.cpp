@@ -110,7 +110,7 @@ void ofApp::draw(){
         // draw leaves
         for (auto l:leaves) {
             glm::vec3 pos = l.getPosition();
-            ofDrawSphere(pos.x, pos.y, pos.z,20);
+            ofDrawSphere(pos.x, pos.y, pos.z,10);
         }
 
         mat.begin();
