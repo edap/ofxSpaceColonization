@@ -543,6 +543,125 @@
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
+			<key>DFA17909A3A69A1C4E7C7E52</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxBranchesPrimitive.h</string>
+				<key>path</key>
+				<string>../../../addons/ofxBranchesPrimitive/src/ofxBranchesPrimitive.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>9CA8994C3B1F341C80E33413</key>
+			<dict>
+				<key>fileRef</key>
+				<string>49AFE364A5C9FF0EE67CDEEA</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>49AFE364A5C9FF0EE67CDEEA</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxBranchesPrimitive.cpp</string>
+				<key>path</key>
+				<string>../../../addons/ofxBranchesPrimitive/src/ofxBranchesPrimitive.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>A470AB7CA4429342FE517CAF</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxBranchCylinder.h</string>
+				<key>path</key>
+				<string>../../../addons/ofxBranchesPrimitive/src/ofxBranchCylinder.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>39656E26E41578F1CCAF58EC</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxBranch.h</string>
+				<key>path</key>
+				<string>../../../addons/ofxBranchesPrimitive/src/ofxBranch.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>0B0B9DECB3136B8B0ACF1ED3</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>F7EFC024A62DBFE33ACC87E6</string>
+					<string>39656E26E41578F1CCAF58EC</string>
+					<string>A470AB7CA4429342FE517CAF</string>
+					<string>49AFE364A5C9FF0EE67CDEEA</string>
+					<string>DFA17909A3A69A1C4E7C7E52</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>src</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>FF8145C04D566ED1D51E5747</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>0B0B9DECB3136B8B0ACF1ED3</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>ofxBranchesPrimitive</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>A62F3EE0B6D7B2EC9CE74136</key>
+			<dict>
+				<key>fileRef</key>
+				<string>F7EFC024A62DBFE33ACC87E6</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>F7EFC024A62DBFE33ACC87E6</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxBranch.cpp</string>
+				<key>path</key>
+				<string>../../../addons/ofxBranchesPrimitive/src/ofxBranch.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
 			<key>6948EE371B920CB800B5AC1A</key>
 			<dict>
 				<key>children</key>
@@ -674,6 +793,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
+						<string>../../../addons/ofxBranchesPrimitive/src</string>
 						<string>../../../addons/ofxGui/src</string>
 						<string>../../../addons/ofxSpaceColonization/src</string>
 					</array>
@@ -736,6 +856,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
+						<string>../../../addons/ofxBranchesPrimitive/src</string>
 						<string>../../../addons/ofxGui/src</string>
 						<string>../../../addons/ofxSpaceColonization/src</string>
 					</array>
@@ -777,6 +898,7 @@ fi
 			<dict>
 				<key>children</key>
 				<array>
+					<string>FF8145C04D566ED1D51E5747</string>
 					<string>480A780D8D0308AE4A368801</string>
 					<string>13F219A2990660B584BD900F</string>
 				</array>
@@ -934,6 +1056,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
+						<string>../../../addons/ofxBranchesPrimitive/src</string>
 						<string>../../../addons/ofxGui/src</string>
 						<string>../../../addons/ofxSpaceColonization/src</string>
 					</array>
@@ -994,6 +1117,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
+						<string>../../../addons/ofxBranchesPrimitive/src</string>
 						<string>../../../addons/ofxGui/src</string>
 						<string>../../../addons/ofxSpaceColonization/src</string>
 					</array>
@@ -1052,6 +1176,8 @@ fi
 				<array>
 					<string>E4B69E200A3A1BDC003C02F2</string>
 					<string>E4B69E210A3A1BDC003C02F2</string>
+					<string>A62F3EE0B6D7B2EC9CE74136</string>
+					<string>9CA8994C3B1F341C80E33413</string>
 					<string>856AA354D08AB4B323081444</string>
 					<string>5CBB2AB3A60F65431D7B555D</string>
 					<string>B266578FC55D23BFEBC042E7</string>
@@ -1104,7 +1230,7 @@ fi
 				<key>isa</key>
 				<string>PBXNativeTarget</string>
 				<key>name</key>
-				<string>example-2d</string>
+				<string>example-3d</string>
 				<key>productName</key>
 				<string>myOFApp</string>
 				<key>productReference</key>
@@ -1121,7 +1247,7 @@ fi
 				<key>isa</key>
 				<string>PBXFileReference</string>
 				<key>path</key>
-				<string>example-2dDebug.app</string>
+				<string>example-3dDebug.app</string>
 				<key>sourceTree</key>
 				<string>BUILT_PRODUCTS_DIR</string>
 			</dict>
@@ -1150,6 +1276,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
+						<string>../../../addons/ofxBranchesPrimitive/src</string>
 						<string>../../../addons/ofxGui/src</string>
 						<string>../../../addons/ofxSpaceColonization/src</string>
 					</array>
@@ -1195,6 +1322,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
+						<string>../../../addons/ofxBranchesPrimitive/src</string>
 						<string>../../../addons/ofxGui/src</string>
 						<string>../../../addons/ofxSpaceColonization/src</string>
 					</array>

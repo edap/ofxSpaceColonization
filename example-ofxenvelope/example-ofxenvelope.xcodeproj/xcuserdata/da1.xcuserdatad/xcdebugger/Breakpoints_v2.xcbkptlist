@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../addons/ofxSpaceColonization/src/ofxSpaceColonization.cpp"
+            timestampString = "520431811.329682"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "ofxSpaceColonization::grow(glm::vec3 wind)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofxSpaceColonization::grow()"
+                  moduleName = "example-ofxenvelopeDebug"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/da1/Sources/OF/of_WS_v20170414_osx_release/addons/ofxSpaceColonization/src/ofxSpaceColonization.cpp"
+                  timestampString = "520431320.554874"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "318">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ofxSpaceColonization::grow()"
+                  moduleName = "example-ofxenvelopeDebug"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/da1/Sources/OF/of_WS_v20170414_osx_release/addons/ofxSpaceColonization/src/ofxSpaceColonization.cpp"
+                  timestampString = "520431320.557288"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "735">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

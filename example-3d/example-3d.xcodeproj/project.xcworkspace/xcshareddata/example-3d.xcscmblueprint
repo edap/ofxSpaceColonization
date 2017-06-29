@@ -1,0 +1,29 @@
+{
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4A914E0190329EE6743444659080E621E3C5555A" : 9223372036854775807,
+    "DACC6B0E4B8E1EEDCE5E4C1B68935720F78C8AEC" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "942825ED-C3B3-4485-B4D9-3B9C73B9F957",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4A914E0190329EE6743444659080E621E3C5555A" : "..\/ofxBranchesPrimitive",
+    "DACC6B0E4B8E1EEDCE5E4C1B68935720F78C8AEC" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "example-3d",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "example-3d.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:edap\/ofxBranchesPrimitive.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4A914E0190329EE6743444659080E621E3C5555A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:edap\/ofxSpaceColonization.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DACC6B0E4B8E1EEDCE5E4C1B68935720F78C8AEC"
+    }
+  ]
+}

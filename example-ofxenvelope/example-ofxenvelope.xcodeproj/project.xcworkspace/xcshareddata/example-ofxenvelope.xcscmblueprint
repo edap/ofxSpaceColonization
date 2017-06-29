@@ -1,0 +1,36 @@
+{
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4A914E0190329EE6743444659080E621E3C5555A" : 9223372036854775807,
+    "DACC6B0E4B8E1EEDCE5E4C1B68935720F78C8AEC" : 9223372036854775807,
+    "909A393442F1C7F8216F839E5CFE03A8B084A714" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D888C596-B820-4DB8-AF59-330B61181F28",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4A914E0190329EE6743444659080E621E3C5555A" : "..\/..\/addons\/ofxBranchesPrimitive",
+    "DACC6B0E4B8E1EEDCE5E4C1B68935720F78C8AEC" : "..\/..\/addons\/ofxSpaceColonization",
+    "909A393442F1C7F8216F839E5CFE03A8B084A714" : "..\/..\/addons\/ofxEnvelope"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "example-ofxenvelope",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "example-ofxenvelope.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:edap\/ofxBranchesPrimitive.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4A914E0190329EE6743444659080E621E3C5555A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:edap\/ofxEnvelope.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "909A393442F1C7F8216F839E5CFE03A8B084A714"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:edap\/ofxSpaceColonization.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DACC6B0E4B8E1EEDCE5E4C1B68935720F78C8AEC"
+    }
+  ]
+}

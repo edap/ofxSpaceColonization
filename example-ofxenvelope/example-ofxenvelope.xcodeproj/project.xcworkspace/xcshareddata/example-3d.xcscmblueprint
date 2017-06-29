@@ -1,0 +1,36 @@
+{
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "DACC6B0E4B8E1EEDCE5E4C1B68935720F78C8AEC" : 9223372036854775807,
+    "4A914E0190329EE6743444659080E621E3C5555A" : 9223372036854775807,
+    "909A393442F1C7F8216F839E5CFE03A8B084A714" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "04E0D3C5-B64D-4F30-A09C-78C767EB10F0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "DACC6B0E4B8E1EEDCE5E4C1B68935720F78C8AEC" : "..\/..\/addons\/ofxSpaceColonization",
+    "4A914E0190329EE6743444659080E621E3C5555A" : "..\/..\/addons\/ofxBranchesPrimitive",
+    "909A393442F1C7F8216F839E5CFE03A8B084A714" : "..\/..\/addons\/ofxEnvelope"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "example-3d",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "example-3d.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:edap\/ofxBranchesPrimitive.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4A914E0190329EE6743444659080E621E3C5555A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:edap\/ofxEnvelope.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "909A393442F1C7F8216F839E5CFE03A8B084A714"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:edap\/ofxSpaceColonization.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DACC6B0E4B8E1EEDCE5E4C1B68935720F78C8AEC"
+    }
+  ]
+}
