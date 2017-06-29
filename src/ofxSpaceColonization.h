@@ -30,11 +30,7 @@ public:
     void build();
     void grow();
     void clear();
-
     vector<ofxSpaceColonizationLeaf> getLeaves() const;
-    int getSizeBranches() const;
-    glm::vec3 getBranchPosition(int _index) const;
-    glm::vec3 getParentBranchPosition(int _index) const;
 
     //remove all the setters once that the transition to opt is done
     void setLeavesPositions(vector<glm::vec3> leaves_positions);
@@ -42,8 +38,10 @@ public:
     ofxSpaceColonizationOptions options;
 
 private:
+    void makeSureThatThereAreLeaves();
+    vector<glm::vec3> leaves_positions;
     void addBranchToMesh(shared_ptr<ofxSpaceColonizationBranch> branch,ofxBranchCylinderOptions opt);
     vector<ofxSpaceColonizationLeaf> leaves;
     vector<shared_ptr<ofxSpaceColonizationBranch>> branches;
-    vector<glm::vec3> leaves_positions;
+
 };

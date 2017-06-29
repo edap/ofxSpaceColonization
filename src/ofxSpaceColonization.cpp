@@ -2,6 +2,7 @@
 
 #include "ofxSpaceColonization.h"
 
+
 static const ofxSpaceColonizationOptions defaultSpaceColOptions = {
     150,                             // max_dist,
     10,                              // min_dist,
@@ -24,33 +25,25 @@ ofxSpaceColonization::ofxSpaceColonization(){
 
 ofxSpaceColonization::ofxSpaceColonization(ofxSpaceColonizationOptions _opt){
     setup(_opt);
-
 }
 
 void ofxSpaceColonization::setup(ofxSpaceColonizationOptions _opt){
-    //this->mesh = getMesh();
     this->options = _opt;
     this->setPosition(glm::vec3(_opt.rootPosition));
 };
 
 void ofxSpaceColonization::build(){
+    makeSureThatThereAreLeaves();
     if (options.use2d) {
-        //TODO set this variable in the opt struct of the 2D example and remove this condition
         options.rootPosition = glm::vec4(ofGetWidth()/2, ofGetHeight(), 0, 1.0);
         options.rootDirection = glm::vec3(0.0f, -1.0f, 0.0f);
     }
-    if (leaves_positions.empty()) {
-        leaves_positions =
-            ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, options.use2d, options.trunk_length);
-    }
-
     glm::vec4 endPoint = glm::vec4(0.0f,1.0f,0.0f, 1.0);
     glm::quat orientation;
     shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(options.rootPosition, endPoint, orientation, glm::vec3(0.0f, 1.0f, 0.0f), options.radius));
     branches.push_back(root);
 
-
-    for (auto vec:leaves_positions) {
+    for (auto vec:this->leaves_positions) {
         leaves.push_back(ofxSpaceColonizationLeaf(vec));
     }
 
@@ -194,16 +187,19 @@ vector<ofxSpaceColonizationLeaf> ofxSpaceColonization::getLeaves() const{
     return this->leaves;
 }
 
-int ofxSpaceColonization::getSizeBranches() const{
-    return this->branches.size();
+void ofxSpaceColonization::makeSureThatThereAreLeaves(){
+    if(leaves_positions.empty()){
+        leaves_positions =
+        ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, defaultSpaceColOptions.use2d, defaultSpaceColOptions.trunk_length);
+    }
 }
 
 void ofxSpaceColonization::clear(){
     options.doneGrowing = false;
     setup(options);
+    leaves_positions.clear();
     leaves.clear();
     branches.clear();
-    leaves_positions.clear();
     getMesh().clear();
 };
 
