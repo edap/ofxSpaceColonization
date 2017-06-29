@@ -21,10 +21,10 @@ void ofApp::setup(){
     gui.add(buildAgain.setup("build it again"));
     gui.add(showWireframe.setup("wireframe", false));
     // gui colors
-    gui.add(diffuseColor.setup("diffuse color", ofColor(255, 105, 255), ofColor(0, 0), ofColor(255, 255)));
-    gui.add(emissiveColor.setup("emissive color", ofColor(217, 44, 5), ofColor(0, 0), ofColor(255, 255)));
-    gui.add(lightColor.setup("light color", ofColor(83, 255, 161), ofColor(0, 0), ofColor(255, 255)));
-    gui.add(bgColor.setup("bg color", ofColor(92, 206, 208), ofColor(0, 0), ofColor(255, 255)));
+    gui.add(diffuseColor.setup("diffuse color", ofColor(255, 0, 238), ofColor(0, 0), ofColor(255, 255)));
+    gui.add(emissiveColor.setup("emissive color", ofColor(63, 182, 87), ofColor(0, 0), ofColor(255, 255)));
+    gui.add(lightColor.setup("light color", ofColor(0, 0, 235), ofColor(0, 0), ofColor(255, 255)));
+    gui.add(bgColor.setup("bg color", ofColor(53, 137, 222), ofColor(0, 0), ofColor(255, 255)));
     // gui envelope
 
     light.setPosition(-600, 800, 0);
@@ -78,7 +78,7 @@ void ofApp::draw(){
     mat.begin();
     if (showWireframe) {
        tree.drawWireframe();
-       tree.drawNormals(abs(sin(ofGetElapsedTimef()*0.5)* 6));
+       //tree.drawNormals(abs(sin(ofGetElapsedTimef()*0.5)* 6));
     } else {
        tree.draw();
     }
