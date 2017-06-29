@@ -29,6 +29,7 @@ public:
 
     void build();
     void grow();
+    void grow(glm::vec3 wind);
     void clear();
     vector<ofxSpaceColonizationLeaf> getLeaves() const;
 

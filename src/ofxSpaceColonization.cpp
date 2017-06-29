@@ -97,6 +97,10 @@ void ofxSpaceColonization::build(){
 }
 
 void ofxSpaceColonization::grow(){
+    grow(glm::vec3(0.0,0.0,0.0));
+}
+
+void ofxSpaceColonization::grow(glm::vec3 wind){
     float record = -1;
     if (!options.doneGrowing) {
         //If no leaves left, we are done
@@ -104,6 +108,13 @@ void ofxSpaceColonization::grow(){
             options.doneGrowing = true;
             return;
         }
+
+        if(glm::length(wind) > 0){
+            for (auto& l:leaves) {
+                l.move(wind);
+            }
+        }
+
         //process leaves
         for (int it=0;it<leaves.size();it++) {
             //float record = 10000.0;
@@ -113,6 +124,7 @@ void ofxSpaceColonization::grow(){
             for (int i=0;i<branches.size();i++) {
                 auto distance = glm::distance(leaves[it].getPosition(),
                                               glm::vec3(branches[i]->getEndPos()));
+
                 //options.min_dist is what in the paper it's called
                 // "kill distance"
                 if (distance < options.min_dist) {
@@ -134,6 +146,7 @@ void ofxSpaceColonization::grow(){
                 // here you should add some random force to avoid the situation
                 // where a branch is stucked between the attraction of 2 leaves
                 // equidistant
+                //glm::vec3 wind = glm::normalize(dir + glm::vec3(20.0,0.0, 0.0));
                 branches[closestBranchIndex]->correctNextBranchDirection(dirNorm);
                 branches[closestBranchIndex]->incrementCounterBy(1);
             }
