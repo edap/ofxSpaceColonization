@@ -54,7 +54,7 @@ void ofxSpaceColonization::build(){
         glm::vec3 cur = glm::vec3(current->getEndPos());
         for (auto l:leaves) {
             float distance = glm::distance(cur, l.getPosition());
-            if (distance < options.max_dist) {
+            if (distance < options.maxDist) {
                 found = true;
             }
         }
@@ -123,11 +123,11 @@ void ofxSpaceColonization::grow(glm::vec3 wind){
 
                 //options.min_dist is what in the paper it's called
                 // "kill distance"
-                if (distance < options.min_dist) {
+                if (distance < options.minDist) {
                     leaves[it].setReached(true);
                     closestBranchIndex = -1;
                     break;
-                } else if (distance > options.max_dist){
+                } else if (distance > options.maxDist){
                     //break;
                 } else if ((closestBranchIndex < 0) || (distance < record)){
                     closestBranchIndex = i;
@@ -200,7 +200,7 @@ vector<ofxSpaceColonizationLeaf> ofxSpaceColonization::getLeaves() const{
 void ofxSpaceColonization::makeSureThatThereAreLeaves(){
     if(leaves_positions.empty()){
         leaves_positions =
-        ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, defaultSpaceColOptions.trunk_length);
+        ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, defaultSpaceColOptions.trunkLength);
     }
 }
 

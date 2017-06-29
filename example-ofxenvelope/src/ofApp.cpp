@@ -144,15 +144,15 @@ void ofApp::maybeDrawGui(){
 }
 
 void ofApp::selectedMaxDistChanghed(int & aselectedMaxDist){
-    tree.options.max_dist = aselectedMaxDist;
+    tree.options.maxDist = aselectedMaxDist;
 }
 
 void ofApp::selectedMinDistChanghed(int & aselectedMinDist){
-    tree.options.min_dist = aselectedMinDist;
+    tree.options.minDist = aselectedMinDist;
 }
 
 void ofApp::trunkLengthChanghed(int & trunkLenght){
-    tree.options.trunk_length = trunkLenght;
+    tree.options.trunkLength = trunkLenght;
 };
 
 void ofApp::selectedLengthChanghed(int & aselectedLength){
@@ -203,7 +203,7 @@ void ofApp::setUpPointsAndRebuild(){
     env.clear();
     env.setupPoints();
 
-    auto pos = glm::vec3(0.0f, tree.options.trunk_length, 0.0f);
+    auto pos = glm::vec3(0.0f, tree.options.trunkLength, 0.0f);
     env.moveTo(pos);
 
     tree.clear();

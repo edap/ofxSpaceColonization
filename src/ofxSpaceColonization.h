@@ -7,9 +7,9 @@
 #include "ofxBranchCylinder.h"
 
 struct ofxSpaceColonizationOptions{
-    int max_dist; // in the paper "radius of influence"
-    int min_dist; // in the paper "kill distance"
-    int trunk_length;
+    int maxDist;
+    int minDist;
+    int trunkLength;
     glm::vec4 rootPosition;
     glm::vec3 rootDirection;
     int branchLength;

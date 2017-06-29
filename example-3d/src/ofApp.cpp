@@ -102,11 +102,11 @@ void ofApp::maybeDrawGui(){
 }
 
 void ofApp::selectedMaxDistChanghed(int & aselectedMaxDist){
-    tree.options.max_dist = aselectedMaxDist;
+    tree.options.maxDist = aselectedMaxDist;
 }
 
 void ofApp::selectedMinDistChanghed(int & aselectedMinDist){
-    tree.options.min_dist = aselectedMinDist;
+    tree.options.minDist = aselectedMinDist;
 }
 
 void ofApp::selectedLengthChanghed(int & aselectedLength){
