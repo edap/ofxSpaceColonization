@@ -32,6 +32,10 @@ void ofxSpaceColonization::setup(ofxSpaceColonizationOptions _opt){
     this->setPosition(glm::vec3(_opt.rootPosition));
 };
 
+void ofxSpaceColonization::setLeavesPositions(vector<glm::vec3> _leaves_positions){
+    this->leaves_positions = _leaves_positions;
+};
+
 void ofxSpaceColonization::build(){
     makeSureThatThereAreLeaves();
     if (options.use2d) {
