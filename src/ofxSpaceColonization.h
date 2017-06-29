@@ -12,7 +12,6 @@ struct ofxSpaceColonizationOptions{
     int trunk_length;
     glm::vec4 rootPosition;
     glm::vec3 rootDirection;
-    bool use2d;
     int branchLength;
     bool doneGrowing;
     bool cap;

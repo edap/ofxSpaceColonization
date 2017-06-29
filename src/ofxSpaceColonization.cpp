@@ -9,7 +9,6 @@ static const ofxSpaceColonizationOptions defaultSpaceColOptions = {
     150,                             // trunk_length
     glm::vec4(0.0f,0.0f,0.0f, 1.0f), // rootPosition
     glm::vec3(0.0f, 1.0f, 0.0f),     // rootDirection
-    false,                           // use2d
     7,                               // branchLength
     false,                           // done growing (is it still used? check)
     false,                           // cap
@@ -38,10 +37,6 @@ void ofxSpaceColonization::setLeavesPositions(vector<glm::vec3> _leaves_position
 
 void ofxSpaceColonization::build(){
     makeSureThatThereAreLeaves();
-    if (options.use2d) {
-        options.rootPosition = glm::vec4(ofGetWidth()/2, ofGetHeight(), 0, 1.0);
-        options.rootDirection = glm::vec3(0.0f, -1.0f, 0.0f);
-    }
     glm::vec4 endPoint = glm::vec4(0.0f,1.0f,0.0f, 1.0);
     glm::quat orientation;
     shared_ptr<ofxSpaceColonizationBranch> root(new ofxSpaceColonizationBranch(options.rootPosition, endPoint, orientation, glm::vec3(0.0f, 1.0f, 0.0f), options.radius));
@@ -205,7 +200,7 @@ vector<ofxSpaceColonizationLeaf> ofxSpaceColonization::getLeaves() const{
 void ofxSpaceColonization::makeSureThatThereAreLeaves(){
     if(leaves_positions.empty()){
         leaves_positions =
-        ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, defaultSpaceColOptions.use2d, defaultSpaceColOptions.trunk_length);
+        ofxSpaceColonizationHelper::genRandomLeavesPositions(ofGetWidth(), ofGetHeight(), 400, defaultSpaceColOptions.trunk_length);
     }
 }
 

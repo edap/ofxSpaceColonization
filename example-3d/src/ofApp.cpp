@@ -39,25 +39,15 @@ void ofApp::setup(){
         150,                             // trunk_length
         glm::vec4(0.0f,0.0f,0.0f, 1.0f), // rootPosition
         glm::vec3(0.0f, 1.0f, 0.0f),     // rootDirection
-        false,                           // use2d
         selectedLength,                  // branchLength
-        false,                           // done growing (is it still used? check)
-        false,                            // cap
+        false,                           // done growing
+        false,                           // cap
         radius,                          // radius;
         16,                              // resolution;
         1,                               // textureRepeat;
         radiusScale                      // radiusScale;
     });
     tree.setup(opt);
-
-//    ofxSpaceColonizationHelper::genRandomLeavesPositions(
-//        ofRandom(-ofGetWidth()/2, ofGetWidth()/2),
-//                                                         int _width,
-//                                                         int _height,
-//                                                         int n_particles,
-//                                                         bool use2d,
-//                                                         int _trunk_length
-//                                                         );
     tree.build();
 }
 
@@ -84,20 +74,7 @@ void ofApp::draw(){
         //cout << pos.y << endl;
         ofDrawSphere(pos.x, pos.y, pos.z,20);
     }
-    //draw branches
-//    auto nBranches = tree.getSizeBranches();
-//    for (int i = 0; i < nBranches; i++) {
-//        float lineWidth = ofMap(i, 0, nBranches, 20, 1);
-//        ofSetLineWidth(lineWidth);
-//
-//        auto parentPos = tree.getParentBranchPosition(i);
-//        auto pos = tree.getBranchPosition(i);
-//
-//
-//        ofDrawLine(parentPos.x, parentPos.y,
-//                   parentPos.z, pos.x,
-//                   pos.y, pos.z);
-//    }
+
     mat.begin();
     if (showWireframe) {
        tree.drawWireframe();
@@ -105,7 +82,6 @@ void ofApp::draw(){
     } else {
        tree.draw();
     }
-
     mat.end();
 
     ofDisableDepthTest();
