@@ -35,6 +35,7 @@ public:
     void deviationOnYChanghed(float & yDev);
     void deviationOnXChanghed(float & xDev);
     void nVerticesChanghed(int & nVertices);
+    void heightChanghed(int & _height);
 
     void setUpPointsAndRebuild();
 
@@ -64,6 +65,7 @@ public:
     ofxFloatSlider angle;
     ofxFloatSlider yDev;
     ofxFloatSlider xDev;
+    ofxIntSlider height;
     ofxIntSlider nVertices;
 
     ofxToggle applyWind;

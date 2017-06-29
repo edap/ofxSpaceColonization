@@ -3,18 +3,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    //gui & listeners
-    selectedMaxDist.addListener(this, &ofApp::selectedMaxDistChanghed);
-    selectedMinDist.addListener(this, &ofApp::selectedMinDistChanghed);
-    selectedLength.addListener(this, &ofApp::selectedLengthChanghed);
-    trunkLength.addListener(this, &ofApp::trunkLengthChanghed);
-    radius.addListener(this, &ofApp::radiusChanghed);
-    buildAgain.addListener(this, &ofApp::buildAgainPressed);
-    radiusScale.addListener(this, &ofApp::radiusScaleChanghed);
-    angle.addListener(this, &ofApp::angleChanghed);
-    xDev.addListener(this, &ofApp::deviationOnXChanghed);
-    yDev.addListener(this, &ofApp::deviationOnYChanghed);
-    nVertices.addListener(this, &ofApp::nVerticesChanghed);
+    //gui
     gui.setup();
     gui.setPosition(ofGetWidth()-200, 0);
     gui.add(selectedMaxDist.set("MaxDist", 150, 90, 300));
@@ -34,8 +23,8 @@ void ofApp::setup(){
     // gui envelope
     gui.add(modelEnvelope.setup("model envelope mode",false));
     gui.add(angle.setup("angle", 0.002, 0.001, 0.02));
-    gui.add(xDev.setup("xDev %", 0.2, 0.0, 0.4));
-    gui.add(yDev.setup("yDev %", 0.2, 0.0, 0.4));
+    gui.add(xDev.setup("xDev %", 0.2, 0.0, 0.9));
+    gui.add(yDev.setup("yDev %", 0.2, 0.0, 0.9));
     gui.add(nVertices.setup("nVertices", 400, 10, 1000));
 
     gui.add(applyWind.setup("apply wind",false));
@@ -54,7 +43,6 @@ void ofApp::setup(){
         150,                             // trunk_length
         glm::vec4(0.0f,0.0f,0.0f, 1.0f), // rootPosition
         glm::vec3(0.0f, 1.0f, 0.0f),     // rootDirection
-        false,                           // use2d
         selectedLength,                  // branchLength
         false,                           // done growing (is it still used? check)
         true,                            // cap
@@ -74,15 +62,26 @@ void ofApp::setup(){
         0.3,    //deviationOnX (percent on the ray)
     });
     env.setup(optEnv);
-//    env.moveTo(glm::vec3(0.0f, float(opt.trunk_length), 0.0f));
-//
-//    tree.setLeavesPositions(env.getPoints());
     tree.build();
+
+    //listeners
+    selectedMaxDist.addListener(this, &ofApp::selectedMaxDistChanghed);
+    selectedMinDist.addListener(this, &ofApp::selectedMinDistChanghed);
+    selectedLength.addListener(this, &ofApp::selectedLengthChanghed);
+    trunkLength.addListener(this, &ofApp::trunkLengthChanghed);
+    radius.addListener(this, &ofApp::radiusChanghed);
+    buildAgain.addListener(this, &ofApp::buildAgainPressed);
+    radiusScale.addListener(this, &ofApp::radiusScaleChanghed);
+    angle.addListener(this, &ofApp::angleChanghed);
+    xDev.addListener(this, &ofApp::deviationOnXChanghed);
+    yDev.addListener(this, &ofApp::deviationOnYChanghed);
+    nVertices.addListener(this, &ofApp::nVerticesChanghed);
+    height.addListener(this, &ofApp::heightChanghed);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    if(!modelEnvelope){
+    if (!modelEnvelope) {
         light.setAmbientColor(ofColor(lightColor));
         mat.setDiffuseColor(ofColor(diffuseColor));
         mat.setEmissiveColor(ofColor(emissiveColor));
@@ -111,23 +110,9 @@ void ofApp::draw(){
         // draw leaves
         for (auto l:leaves) {
             glm::vec3 pos = l.getPosition();
-            //cout << pos.y << endl;
             ofDrawSphere(pos.x, pos.y, pos.z,20);
         }
-        //draw branches
-    //    auto nBranches = tree.getSizeBranches();
-    //    for (int i = 0; i < nBranches; i++) {
-    //        float lineWidth = ofMap(i, 0, nBranches, 20, 1);
-    //        ofSetLineWidth(lineWidth);
-    //
-    //        auto parentPos = tree.getParentBranchPosition(i);
-    //        auto pos = tree.getBranchPosition(i);
-    //
-    //
-    //        ofDrawLine(parentPos.x, parentPos.y,
-    //                   parentPos.z, pos.x,
-    //                   pos.y, pos.z);
-    //    }
+
         mat.begin();
         if (showWireframe) {
            tree.drawWireframe();
@@ -135,9 +120,7 @@ void ofApp::draw(){
         } else {
            tree.draw();
         }
-
         mat.end();
-
 
     } else {
         this->env.draw();
@@ -204,17 +187,12 @@ void ofApp::deviationOnXChanghed(float & _devX){
     env.options.deviationOnX = _devX;
     setUpPointsAndRebuild();
 }
-//
-//void ofApp::yOffsetChanghed(int & _yOffset){
-//    auto pos = glm::vec3(0.0f, float(_yOffset), 0.0f);
-//    env.moveTo(pos);
-//}
-//
-//void ofApp::heightChanghed(int & _height){
-//    env.options.curveHeight = _height;
-//    env.clear();
-//    env.setupPoints();
-//};
+
+
+void ofApp::heightChanghed(int & _height){
+    env.options.curveHeight = _height;
+    setUpPointsAndRebuild();
+};
 
 void ofApp::nVerticesChanghed(int & _nVertices){
     env.options.nVertices = _nVertices;
