@@ -10,7 +10,7 @@ static const ofxSpaceColonizationOptions defaultSpaceColOptions = {
     glm::vec4(0.0f,0.0f,0.0f, 1.0f), // rootPosition
     glm::vec3(0.0f, 1.0f, 0.0f),     // rootDirection
     7,                               // branchLength
-    false,                           // done growing (is it still used? check)
+    false,                           // done growing
     false,                           // cap
     2.0,                             // radius;
     16,                              // resolution;
