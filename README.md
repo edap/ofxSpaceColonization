@@ -34,17 +34,17 @@ This will generate a tree using this standard options:
 
 ```cpp
 static const ofxSpaceColonizationOptions defaultSpaceColOptions = {
-    150,                             // max_dist, leaves are attractive if closer than this distance
-    10,                              // min_dist, leaves are attractive if farther than this distance
-    150,                             // trunk_length, the length of the trunk
+    150,                             // maxDist, leaves are attractive if closer than this distance
+    10,                              // minDist, leaves are attractive if farther than this distance
+    150,                             // trunkLength, the length of the trunk
     glm::vec4(0.0f,0.0f,0.0f, 1.0f), // rootPosition, the position of the root
     glm::vec3(0.0f, 1.0f, 0.0f),     // rootDirection, the direction on which the tree will starts to grow
     7,                               // branchLength, the length of each branch
-    false,                           // done growing, a value that indicates when the grow process is done
-    false,                           // cap, if adding caps to the branches or not
+    false,                           // doneDrowing, a value that indicates when the grow process is done
+    false,                           // cap, if the cylinders that compose the branches have caps or not
     2.0,                             // radius, the radius of the branch
-    16,                              // resolution, the resolution of the cylinders composing the geometry
-    1,                               // textureRepeat, how many time a texture has to be repeated on a branch
+    16,                              // resolution, the resolution of the cylinders that compose the geometry
+    1,                               // textureRepeat, how many times a texture has to be repeated on a branch
     0.9997                           // radiusScale, how much the radius will increase or decrease at each interaction
 };
 ```

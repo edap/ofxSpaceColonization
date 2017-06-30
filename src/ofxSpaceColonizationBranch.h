@@ -1,6 +1,6 @@
 #pragma once
 #include "ofMain.h"
-#include "ofxBranch.h"
+#include "ofxBranchesPrimitive.h"
 
 class ofxSpaceColonizationBranch : public ofxBranch{
 
