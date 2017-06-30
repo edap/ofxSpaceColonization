@@ -191,6 +191,8 @@ install:
   - git clone --depth=1 --branch=$OF_BRANCH https://github.com/openframeworks/openFrameworks
   - cd openFrameworks
   - scripts/ci/addons/install.sh
+  - git clone --depth=1  --branch=master https://github.com/edap/ofxBranchesPrimitive addons/ofxBranchesPrimitive
+  - git clone --depth=1  --branch=master https://github.com/edap/ofxEnvelope addons/ofxEnvelope
 
 script:
   - scripts/ci/addons/build.sh
