@@ -14,6 +14,7 @@ void ofApp::setup(){
     gui.add(radiusScale.setup("radius scale", 0.98, 0.85, 1.0));
     gui.add(slowness.set("slowness", 4, 1, 10));
     gui.add(buildAgain.setup("build it again"));
+    gui.add(saveMesh.setup("save mesh",false));
     gui.add(showWireframe.setup("wireframe", false));
     // gui colors
     gui.add(diffuseColor.setup("diffuse color", ofColor(255, 105, 255), ofColor(0, 0), ofColor(255, 255)));
@@ -48,7 +49,7 @@ void ofApp::setup(){
         false,                           // done growing (is it still used? check)
         true,                            // cap
         radius,                          // radius;
-        16,                              // resolution;
+        32,                              // resolution;
         1,                               // textureRepeat;
         radiusScale                      // radiusScale;
     });
@@ -78,6 +79,7 @@ void ofApp::setup(){
     yDev.addListener(this, &ofApp::deviationOnYChanghed);
     nVertices.addListener(this, &ofApp::nVerticesChanghed);
     height.addListener(this, &ofApp::heightChanghed);
+    saveMesh.addListener(this, &ofApp::saveMeshPressed);
 }
 
 //--------------------------------------------------------------
@@ -189,6 +191,10 @@ void ofApp::deviationOnXChanghed(float & _devX){
     setUpPointsAndRebuild();
 }
 
+void ofApp::saveMeshPressed(){
+    string randomFilename = ofGetTimestampString() + ".ply";
+    tree.getMesh().save(randomFilename);
+}
 
 void ofApp::heightChanghed(int & _height){
     env.options.curveHeight = _height;

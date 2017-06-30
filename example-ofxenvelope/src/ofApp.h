@@ -36,6 +36,7 @@ public:
     void deviationOnXChanghed(float & xDev);
     void nVerticesChanghed(int & nVertices);
     void heightChanghed(int & _height);
+    void saveMeshPressed();
 
     void setUpPointsAndRebuild();
 
@@ -51,10 +52,8 @@ public:
     ofxButton           buildAgain;
     ofxToggle           showWireframe;
     ofxToggle           modelEnvelope;
-    ofxSpaceColonization tree;
-    ofxEnvelope env;
-    ofMaterial mat;
-    ofLight light;
+    ofxButton saveMesh;
+
 
     ofxColorSlider diffuseColor;
     ofxColorSlider emissiveColor;
@@ -73,5 +72,9 @@ public:
     ofxFloatSlider windAmpl;
 
     ofEasyCam camera;
+    ofxSpaceColonization tree;
+    ofxEnvelope env;
+    ofMaterial mat;
+    ofLight light;
     
 };
