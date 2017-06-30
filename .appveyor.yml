@@ -30,6 +30,8 @@ init:
 install:
 - cd ..
 - git clone --depth=1 --branch=master https://github.com/openframeworks/openFrameworks
+- git clone --depth=1 --branch=master https://github.com/edap/ofxBranchPrimitives openframeworks/addons/ofxBranchPrimitives
+- git clone --depth=1 --branch=master https://github.com/edap/ofxEnvelope openframeworks/addons/ofxEnvelope
 - call openFrameworks\scripts\ci\addons\install.cmd
 
 build_script:
