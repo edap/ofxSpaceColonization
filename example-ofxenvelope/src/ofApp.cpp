@@ -24,6 +24,7 @@ void ofApp::setup(){
     // gui envelope
     gui.add(modelEnvelope.setup("model envelope mode",false));
     gui.add(angle.setup("angle", 0.002, 0.001, 0.02));
+    gui.add(cutTop.setup("cutTop %", 0.0, 0.0, 0.9));
     gui.add(xDev.setup("xDev %", 0.2, 0.0, 0.9));
     gui.add(yDev.setup("yDev %", 0.2, 0.0, 0.9));
     gui.add(nVertices.setup("nVertices", 400, 10, 4000));
@@ -61,7 +62,7 @@ void ofApp::setup(){
         0.002, // curvature
         600,   // nVertices
         0.3,   //deviationOnY (percent on the height)
-        0.3,    //deviationOnX (percent on the ray)
+        0.3   //deviationOnX (percent on the ray)
     });
     env.setup(optEnv);
     tree.build();
@@ -75,6 +76,7 @@ void ofApp::setup(){
     buildAgain.addListener(this, &ofApp::buildAgainPressed);
     radiusScale.addListener(this, &ofApp::radiusScaleChanghed);
     angle.addListener(this, &ofApp::angleChanghed);
+    cutTop.addListener(this, &ofApp::cutTopChanghed);
     xDev.addListener(this, &ofApp::deviationOnXChanghed);
     yDev.addListener(this, &ofApp::deviationOnYChanghed);
     nVertices.addListener(this, &ofApp::nVerticesChanghed);
@@ -205,6 +207,11 @@ void ofApp::nVerticesChanghed(int & _nVertices){
     env.options.nVertices = _nVertices;
     setUpPointsAndRebuild();
 };
+
+void ofApp::cutTopChanghed(float & _cutTop){
+    env.options.curveCutoffTop = _cutTop;
+    setUpPointsAndRebuild();
+}
 
 void ofApp::setUpPointsAndRebuild(){
     env.clear();

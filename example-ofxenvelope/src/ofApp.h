@@ -32,6 +32,7 @@ public:
     void radiusScaleChanghed(float & radiusScaleChanghed);
     void buildAgainPressed();
     void angleChanghed(float & angle);
+    void cutTopChanghed(float & cutTop);
     void deviationOnYChanghed(float & yDev);
     void deviationOnXChanghed(float & xDev);
     void nVerticesChanghed(int & nVertices);
@@ -62,6 +63,7 @@ public:
 
     //envelope params
     ofxFloatSlider angle;
+    ofxFloatSlider cutTop;
     ofxFloatSlider yDev;
     ofxFloatSlider xDev;
     ofxIntSlider height;
