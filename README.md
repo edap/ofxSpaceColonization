@@ -1,6 +1,7 @@
 # ofxSpaceColonization
 
 [![Build status](https://ci.appveyor.com/api/projects/status/9in4i3qdxumv5o3p?svg=true)](https://ci.appveyor.com/project/edap/ofxspacecolonization)
+[![Build status](https://travis-ci.org/edap/ofxSpaceColonization.svg?branch=master)](https://travis-ci.org/edap/ofxSpaceColonization)
 
 
 This addon is an openFrameworks implementation of the paper [Modeling Trees with a Space Colonization Algorithm](http://algorithmicbotany.org/papers/colonization.egwnp2007.large.pdf) by Adam Runions, Brendan Lane, and Przemyslaw Prusinkiewicz.
