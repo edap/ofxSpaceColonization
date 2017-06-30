@@ -25,7 +25,8 @@ void ofApp::setup(){
     gui.add(angle.setup("angle", 0.002, 0.001, 0.02));
     gui.add(xDev.setup("xDev %", 0.2, 0.0, 0.9));
     gui.add(yDev.setup("yDev %", 0.2, 0.0, 0.9));
-    gui.add(nVertices.setup("nVertices", 400, 10, 1000));
+    gui.add(nVertices.setup("nVertices", 400, 10, 4000));
+    gui.add(height.setup("height", 400, 10, 1000));
 
     gui.add(applyWind.setup("apply wind",false));
     gui.add(windFreq.setup("windFreq", 0.1, 0.1, 10.0));

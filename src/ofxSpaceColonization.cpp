@@ -139,11 +139,15 @@ void ofxSpaceColonization::grow(glm::vec3 wind){
             if (closestBranchIndex>=0 && !leaves[it].isReached()) {
                 auto dir = leaves[it].getPosition() - (glm::vec3(branches[closestBranchIndex]->getEndPos()));
                 auto dirNorm = glm::normalize(dir);
-                // here you should add some random force to avoid the situation
-                // where a branch is stucked between the attraction of 2 leaves
-                // equidistant
-                //glm::vec3 wind = glm::normalize(dir + glm::vec3(20.0,0.0, 0.0));
-                branches[closestBranchIndex]->correctNextBranchDirection(dirNorm);
+                // I add a small random force to the direction
+                // to avoid the situation where a branch is stucked
+                //between the attraction of 2 leaves equidistant
+                glm::vec3 dirAndRandom = glm::normalize(dir + glm::vec3(
+                                             ofRandom(0.01),
+                                             ofRandom(0.01),
+                                             ofRandom(0.01)
+                                         ));
+                branches[closestBranchIndex]->correctNextBranchDirection(dirAndRandom);
                 branches[closestBranchIndex]->incrementCounterBy(1);
             }
 
