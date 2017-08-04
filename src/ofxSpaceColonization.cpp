@@ -15,7 +15,8 @@ static const ofxSpaceColonizationOptions defaultSpaceColOptions = {
     2.0,                             // radius;
     16,                              // resolution;
     1,                               // textureRepeat;
-    0.9997                           // radiusScale;
+    0.9997,                          // radiusScale;
+    0.0                              // padding
 };
 
 ofxSpaceColonization::ofxSpaceColonization(){
@@ -85,7 +86,8 @@ void ofxSpaceColonization::build(){
                 parentRadius,
                 newRadius,
                 options.resolution,
-                options.textureRepeat });
+                options.textureRepeat,
+                options.padding});
 
             ofxBranchCylinder::putIntoMesh(nextBranch, this->getMesh(), opt);
         }
@@ -184,7 +186,8 @@ void ofxSpaceColonization::grow(glm::vec3 wind){
                         parentRadius,
                         newRadius,
                         options.resolution,
-                        options.textureRepeat });
+                        options.textureRepeat,
+                        options.padding});
 
                     ofxBranchCylinder::putIntoMesh(nextBranch, this->getMesh(), opt);
                     newBranches.push_back(nextBranch);

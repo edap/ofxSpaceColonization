@@ -19,6 +19,7 @@ struct ofxSpaceColonizationOptions{
     int resolution;
     int textureRepeat;
     float radiusScale;
+    float padding;
 };
 
 class ofxSpaceColonization : public of3dPrimitive {
