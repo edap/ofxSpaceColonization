@@ -56,14 +56,14 @@ void ofApp::setup(){
     });
     tree.setup(opt);
 
-    auto optEnv = ofxEnvelopeOptions({
+    auto optEnv = ofxEnvelopeOptions{
         400,   // curveHeight
-        1.0,   // curveCutoff
-        0.002, // curvature
+        1.0f,   // curveCutoff
+        0.002f, // curvature
         600,   // nVertices
-        0.3,   //deviationOnY (percent on the height)
-        0.3   //deviationOnX (percent on the ray)
-    });
+        0.3f,   //deviationOnY (percent on the height)
+        0.3f   //deviationOnX (percent on the ray)
+    };
     env.setup(optEnv);
     tree.build();
 
