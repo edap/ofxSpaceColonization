@@ -45,7 +45,8 @@ void ofApp::setup(){
         radius,                          // radius;
         16,                              // resolution;
         1,                               // textureRepeat;
-        radiusScale                      // radiusScale;
+        radiusScale,                     // radiusScale;
+        0.0                              // padding
     });
     tree.setup(opt);
     tree.build();
