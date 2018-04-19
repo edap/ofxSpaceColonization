@@ -103,9 +103,7 @@ void ofApp::update(){
 ### License
 MIT
 
-### Notes
-Notes:
-This sources were helpful to understand how other people implement the algorithm. Thanks to their authors for making them public.
+### References
 
 [Procedurally Generated Trees with Space Colonization Algorithm in XNA C#](http://www.jgallant.com/procedurally-generating-trees-with-space-colonization-algorithm-in-xna/)
 
