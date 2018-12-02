@@ -42,7 +42,7 @@ static const ofxSpaceColonizationOptions defaultSpaceColOptions = {
     glm::vec4(0.0f,0.0f,0.0f, 1.0f), // rootPosition, the position of the root
     glm::vec3(0.0f, 1.0f, 0.0f),     // rootDirection, the direction on which the tree will starts to grow
     7,                               // branchLength, the length of each branch
-    false,                           // doneDrowing, a value that indicates when the grow process is done
+    false,                           // doneDrawing, a value that indicates when the grow process is done
     false,                           // cap, if the cylinders that compose the branches have caps or not
     2.0,                             // radius, the radius of the branch
     16,                              // resolution, the resolution of the cylinders that compose the geometry
