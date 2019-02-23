@@ -49,15 +49,15 @@ matrix:
 
 # OSX, OF master
   - os: osx
-    osx_image: xcode8
+    osx_image: xcode9.4
     compiler: clang
     env: TARGET="osx" OF_BRANCH="master"
 
 # OSX, OF stable:  Not supported yet
-#  - os: osx
-#    osx_image: xcode8
-#    compiler: clang
-#    env: TARGET="osx" OF_BRANCH="stable"
+ - os: osx
+   osx_image: xcode9.4
+   compiler: clang
+   env: TARGET="osx" OF_BRANCH="stable"
 
 # Linux ARM6, OF master: Uncomment following lines to enable 
 #  - os: linux
