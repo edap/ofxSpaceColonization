@@ -51,7 +51,7 @@ static const ofxSpaceColonizationOptions defaultSpaceColOptions = {
 };
 ```
 
-You can specify yours options and pass it to the tree using the `setup` method:
+You can specify yours options using the `setup` method:
 
 ```cpp
 void ofApp::setup(){
